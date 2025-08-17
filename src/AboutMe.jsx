@@ -12,24 +12,25 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import * as simpleIcons from "simple-icons";
 
 // --- Simple data model you can tweak ----------------------------------------
 const profile = {
   name: "Rajarsi",
   title: "Lead Engineer",
-  location: "Bengaluru, India",
+  location: "Hyderabad, India",
   summary:
     "Lead Engineer with a focus on PostgreSQL, AWS, and secure, high‑scale data platforms. I enjoy turning ambiguous problems into elegant, measurable systems.",
   avatar:
-    "https://d37b3blifa5mva.cloudfront.net/000_clients/1194366/page/1194366KnvVQnPn.jpg?q=80&w=320&auto=format&fit=crop", // replace with your photo
+    "src//assets//images//9da59552-da8c-4924-a829-35409af9ea7e.jpg?q=80&w=320&auto=format&fit=crop", // replace with your photo
   resumeUrl: "#", // replace with your actual resume link or file
   socials: [
-    { name: "Email", href: "mailto:rajarsi@example.com", icon: Mail },
-    { name: "GitHub", href: "https://github.com/your-handle", icon: Github },
+    { name: "Email", href: "mailto:rajarsi3397@gmail.com", slug: "Gmail" },
+    { name: "GitHub", href: "https://github.com/RajarsiGit", slug: "Github" },
     {
       name: "LinkedIn",
-      href: "https://linkedin.com/in/your-handle",
-      icon: Linkedin,
+      href: "https://www.linkedin.com/in/rajarsi-saha-2709a297",
+      slug: "Linkedin",
     },
   ],
   skills: [
@@ -44,9 +45,9 @@ const profile = {
     "Security & IAM",
   ],
   highlights: [
-    { label: "Years Experience", value: "10+" },
+    { label: "Years Experience", value: "4+" },
     { label: "Prod DBs Optimized", value: "50+" },
-    { label: "Services on AWS", value: "20+" },
+    { label: "Services on AWS", value: "15+" },
   ],
   experience: [
     {
@@ -87,6 +88,25 @@ const profile = {
     },
   ],
 };
+
+function SocialIcon({ slug, size = 20 }) {
+  const icon = simpleIcons[`si${slug}`];
+  if (!icon) return null;
+
+  return (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill={`#${icon.hex}`}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>{icon.title}</title>
+      <path d={icon.path} />
+    </svg>
+  );
+}
 
 // --- Small UI helpers -------------------------------------------------------
 function Chip({ children }) {
@@ -209,13 +229,14 @@ export default function AboutMe() {
 
             {/* Socials */}
             <div className="mt-6 flex flex-wrap gap-3">
-              {profile.socials.map(({ name, href, icon: Icon }) => (
+              {profile.socials.map(({ name, href, slug }) => (
                 <a
                   key={name}
                   href={href}
+                  target="_blank"
                   className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm hover:bg-slate-50"
                 >
-                  <Icon size={16} /> {name}
+                  <SocialIcon slug={slug} size={16} /> {name}
                 </a>
               ))}
             </div>
