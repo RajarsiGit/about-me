@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import * as simpleIcons from "simple-icons";
+import avatar from "./assets/images/9da59552-da8c-4924-a829-35409af9ea7e.jpg";
 
 // --- Simple data model you can tweak ----------------------------------------
 const profile = {
@@ -21,8 +22,7 @@ const profile = {
   location: "Hyderabad, India",
   summary:
     "Lead Engineer with a focus on PostgreSQL, AWS, and secure, high‑scale data platforms. I enjoy turning ambiguous problems into elegant, measurable systems.",
-  avatar:
-    "src//assets//images//9da59552-da8c-4924-a829-35409af9ea7e.jpg?q=80&w=320&auto=format&fit=crop", // replace with your photo
+  avatar: avatar, // replace with your photo
   resumeUrl: "#", // replace with your actual resume link or file
   socials: [
     { name: "Email", href: "mailto:rajarsi3397@gmail.com", slug: "Gmail" },
