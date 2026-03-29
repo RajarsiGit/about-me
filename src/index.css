@@ -44,3 +44,9 @@ body {
   background: rgba(251, 191, 36, 0.25);
   color: #f0ece8;
 }
+
+/* Flip card utility */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
