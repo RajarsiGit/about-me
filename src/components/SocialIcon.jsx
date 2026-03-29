@@ -1,6 +1,15 @@
 import * as simpleIcons from "simple-icons";
+import * as fa6Icons from "react-icons/fa6";
 
 export default function SocialIcon({ slug, size = 20, color }) {
+  // react-icons/fa6 slugs (e.g. "FaAws", "FaMicrosoft")
+  if (slug?.startsWith("Fa")) {
+    const Icon = fa6Icons[slug];
+    if (!Icon) return null;
+    return <Icon size={size} color={color} />;
+  }
+
+  // simple-icons slugs (PascalCase, e.g. "Postgresql")
   const icon = simpleIcons[`si${slug}`];
   if (!icon) return null;
 

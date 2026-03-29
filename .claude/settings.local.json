@@ -4,7 +4,8 @@
       "Bash(npm run:*)",
       "Bash(npm install:*)",
       "Bash(npm ls:*)",
-      "WebFetch(domain:raianiket.github.io)"
+      "WebFetch(domain:raianiket.github.io)",
+      "Bash(node --input-type=module:*)"
     ]
   }
 }

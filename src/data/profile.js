@@ -3,7 +3,9 @@ import avatar from "../assets/images/9da59552-da8c-4924-a829-35409af9ea7e.jpg";
 
 const profile = {
   name: "Rajarsi Saha",
+  pronouns: "He/Him",
   title: "Technical Architect",
+  company: "SysCloud",
   location: "Hyderabad, Telangana, India",
   summary: `Passionate database expert with ${yearsFrom("2021-01-01")} years of experience in cloud ops and DevOps at SysCloud. Deep expertise in AWS, PostgreSQL, and multi-cloud SaaS platforms — focused on application scalability, performance, availability, fault tolerance, and cost optimization. AWS Certified Developer | Microsoft Certified | GenAI enthusiast.`,
   avatar: avatar,
@@ -15,7 +17,7 @@ const profile = {
     {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/rajarsisaha-2709a297",
-      slug: "Linkedin",
+      slug: "FaLinkedin",
     },
   ],
 
@@ -31,6 +33,12 @@ const profile = {
     "Azure DevOps",
     "Application Security",
     "GenAI",
+    "PgBouncer",
+    "pg_repack",
+    "AWS Lambda",
+    "AWS S3",
+    "Jenkins",
+    "AI Agents",
   ],
 
   // Grouped skills with brand slugs for icons (used by Skills section)
@@ -39,30 +47,35 @@ const profile = {
       label: "Databases & Data",
       color: "blue",
       skills: [
-        { name: "PostgreSQL", slug: "postgresql" },
+        { name: "PostgreSQL", slug: "Postgresql" },
         { name: "AWS RDS / Aurora", slug: null },
-        { name: "DynamoDB", slug: "amazondynamodb" },
-        { name: "MS SQL Server", slug: "microsoftsqlserver" },
+        { name: "DynamoDB", slug: "FaAws" },
+        { name: "MS SQL Server", slug: "FaMicrosoft" },
+        { name: "PgBouncer", slug: null },
       ],
     },
     {
       label: "Cloud & DevOps",
       color: "orange",
       skills: [
-        { name: "AWS", slug: "amazonaws" },
-        { name: "Terraform", slug: "terraform" },
-        { name: "Liquibase", slug: "liquibase" },
-        { name: "Azure DevOps", slug: "azuredevops" },
+        { name: "AWS", slug: "FaAws" },
+        { name: "AWS Lambda", slug: "FaAws" },
+        { name: "AWS S3", slug: "FaAws" },
+        { name: "Terraform", slug: "Terraform" },
+        { name: "Liquibase", slug: "Liquibase" },
+        { name: "Jenkins", slug: "Jenkins" },
       ],
     },
     {
       label: "Backend & APIs",
       color: "violet",
       skills: [
-        { name: "GraphQL", slug: "graphql" },
+        { name: "GraphQL", slug: "Graphql" },
         { name: "PostGraphile", slug: null },
         { name: "PL/pgSQL", slug: null },
-        { name: "Node.js", slug: "nodedotjs" },
+        { name: "Node.js", slug: "Nodedotjs" },
+        { name: "AWS Cognito", slug: "FaAws" },
+        { name: "AWS SQS", slug: "FaAws" },
       ],
     },
     {
@@ -70,6 +83,7 @@ const profile = {
       color: "emerald",
       skills: [
         { name: "Multi-Tenant SaaS", slug: null },
+        { name: "Row-Level Security", slug: null },
         { name: "Cost Optimization", slug: null },
         { name: "Application Security", slug: null },
         { name: "CI/CD Pipelines", slug: null },
@@ -80,6 +94,7 @@ const profile = {
       color: "rose",
       skills: [
         { name: "GenAI / LLMs", slug: null },
+        { name: "AI Agents", slug: null },
         { name: "Prompt Engineering", slug: null },
       ],
     },
@@ -87,8 +102,10 @@ const profile = {
 
   highlights: [
     { label: "Years at SysCloud", value: yearsFrom("2021-01-01") },
-    { label: "PostgreSQL DBs Managed", value: "1500+" },
-    { label: "Cloud Cost Saved/mo", value: "$250" },
+    { label: "PostgreSQL DB Servers Managed", value: "40+" },
+    { label: "Cloud Cost Saved (Year)", value: "$228K" },
+    { label: "Data Under Management", value: "500+ TB" },
+    { label: "Engineers Led (DAL Team)", value: "9" },
   ],
 
   experience: [
@@ -170,8 +187,9 @@ const profile = {
       abbr: "AZ",
       badgeColor: "blue",
       issued: "2023",
-      credentialId: "",
-      verifyUrl: "#",
+      credentialId: "ce4c0514-60df-4b6f-b5dc-4ef3b1eb8051",
+      verifyUrl:
+        "https://www.credly.com/badges/ce4c0514-60df-4b6f-b5dc-4ef3b1eb8051",
     },
     {
       name: "AWS Certified Developer — Associate",
@@ -179,8 +197,9 @@ const profile = {
       abbr: "AWS",
       badgeColor: "orange",
       issued: "2023",
-      credentialId: "",
-      verifyUrl: "#",
+      credentialId: "ec64ed4d-9cbb-4438-967a-4f1a47e548b2",
+      verifyUrl:
+        "https://www.credly.com/badges/ec64ed4d-9cbb-4438-967a-4f1a47e548b2",
     },
     {
       name: "EDB Certified Associate - PostgreSQL 13",
@@ -188,8 +207,9 @@ const profile = {
       abbr: "EDB",
       badgeColor: "teal",
       issued: "2022",
-      credentialId: "",
-      verifyUrl: "#",
+      credentialId: "0f0ad437-ca88-4a87-96ba-ce16b211e13f",
+      verifyUrl:
+        "https://www.credly.com/badges/0f0ad437-ca88-4a87-96ba-ce16b211e13f",
     },
     {
       name: "Liquibase and the CI/CD Process",
@@ -197,8 +217,9 @@ const profile = {
       abbr: "DB",
       badgeColor: "violet",
       issued: "2023",
-      credentialId: "",
-      verifyUrl: "#",
+      credentialId: "008426aa-0e79-486a-86d1-e2155b2b522c",
+      verifyUrl:
+        "https://www.credential.net/008426aa-0e79-486a-86d1-e2155b2b522c",
     },
     {
       name: "Getting Started with AWS Machine Learning",
@@ -206,8 +227,9 @@ const profile = {
       abbr: "ML",
       badgeColor: "orange",
       issued: "2023",
-      credentialId: "",
-      verifyUrl: "#",
+      credentialId: "2UWG75943DWH",
+      verifyUrl:
+        "https://www.coursera.org/account/accomplishments/verify/2UWG75943DWH",
     },
     {
       name: "Agentic AI Fundamentals: Architectures, Frameworks, and Applications",
@@ -215,8 +237,81 @@ const profile = {
       abbr: "AI",
       badgeColor: "blue",
       issued: "2026",
-      credentialId: "",
-      verifyUrl: "#",
+      credentialId:
+        "8a439bc94c7636d007629ef73c9f46fa64127e390093a34423a77303e8f01123",
+      verifyUrl:
+        "https://www.linkedin.com/learning/certificates/8a439bc94c7636d007629ef73c9f46fa64127e390093a34423a77303e8f01123",
+    },
+  ],
+
+  leadership: [
+    {
+      title: "DAL Team Lead — 9-Person Engineering Team",
+      period: "May 2025 — Present",
+      bullets: [
+        "Lead sprint planning, task breakdown, and technical direction for a 9-person Data Access Layer team across PostgreSQL, GraphQL, and AWS infrastructure domains.",
+        "Authored weekly DAL progress reports covering sprint velocity, incident status, hiring progress, and infrastructure health — distributed to engineering leadership every week.",
+        "Led Q2 2026 feature assignment planning with VP of Engineering — mapping team capacity against the full product roadmap.",
+        "Conducted formal design gate reviews for all Liquibase schema migrations before production deployment across 1,500+ PostgreSQL databases.",
+      ],
+    },
+    {
+      title: "Senior Database Engineer Hiring Pipeline",
+      period: "November 2025 — March 2026",
+      bullets: [
+        "Owned end-to-end hiring for the Senior Database Platform & Performance Engineer role — LinkedIn shortlisting, Mettl assessment design, take-home evaluation, and 7+ Round 1 technical interviews.",
+        "Designed the technical interview question set and assessment criteria for PostgreSQL performance engineering candidates.",
+      ],
+    },
+    {
+      title: "External Security Audit Representation",
+      period: "January 2026",
+      bullets: [
+        "Represented the DAL team in a formal external security assessment — presenting data access architecture, RLS policies, IAM posture, and multi-tenant isolation controls to auditors.",
+      ],
+    },
+  ],
+
+  incidents: [
+    {
+      title: "Japan Region SSO / Login Outage",
+      severity: "P1",
+      date: "January 2026",
+      summary: "Japan region UI became inaccessible due to a DAL-side config change that broke the app.syscloud.jp login handshake. Subsequent GraphQL requests succeeded via the canary route, masking the failure.",
+      resolution: "Identified root cause, remediated the config deprecation, and introduced permanent region-wise pre-release validation gates.",
+      impact: "Active revenue region with live customer demos and partner interactions — outage directly threatened SLA compliance and customer trust.",
+    },
+    {
+      title: "Google Drive & OneDrive Restore Failures",
+      severity: "P1",
+      date: "January 2026",
+      summary: "Critical incident where Google Drive and OneDrive restore operations were failing for affected customers across multiple accounts.",
+      resolution: "Identified and resolved the root cause, restoring full restore capability for all affected customers.",
+      impact: "Restore is SysCloud's core value proposition — Severity 1 event directly threatening customer retention and SLA compliance.",
+    },
+    {
+      title: "DB Server Throttling & Google API Rate Limiting",
+      severity: "P1",
+      date: "March 2026",
+      summary: "Production issue involving database server throttling combined with Google API rate limiting on RLS03 / transdb-10, degrading backup job throughput.",
+      resolution: "Investigated and resolved throttling root cause, restoring full backup throughput for Google Workspace customers.",
+      impact: "Throttling on a transactional DB server cascades into backup SLA failures for all Google Workspace customers across the region.",
+    },
+    {
+      title: "KMS AccessDeniedException — Hard-Delete S3",
+      severity: "P1",
+      date: "February – March 2026",
+      summary: "Two-phase investigation of KMS Decrypt AccessDeniedException in the hard-delete-s3 Lambda — tracing IAM role chain breakdown and identifying all affected business configurations.",
+      resolution: "Traced IAM role chain failure and remediated all affected businessinfo records to restore compliant data deletion.",
+      impact: "Hard-delete Lambda failures leave deleted customer data in S3 — a direct data residency compliance risk.",
+    },
+    {
+      title: "TaskRegistry — Missing LoadQueryMetadata Handler",
+      severity: "P2",
+      date: "March 2026",
+      summary: "LoadQueryMetadata handler not registered in TaskRegistry for the getarchivedata-v3 MDL workflow, causing silent failures on ECS image postgraphile-server-terf-auto:243.",
+      resolution: "Diagnosed missed registration in the workflow initialisation sequence and added registration validation to the deployment checklist.",
+      impact: "Silent archive data query failures for affected customers. Checklist fix prevents recurrence across all future deployments.",
     },
   ],
 

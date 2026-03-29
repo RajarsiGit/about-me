@@ -20,6 +20,9 @@ import {
   GitBranch,
   FileText,
   ExternalLink,
+  Users,
+  ShieldAlert,
+  AlertTriangle,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import profile from "./data/profile";
@@ -30,7 +33,7 @@ import SearchModal from "./components/SearchModal";
 import { downloadAsPdf } from "./utils/downloadAsPdf";
 
 const ICON_COLOR = "rgba(255,255,255,0.5)";
-const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Contact"];
+const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Leadership", "Incidents", "Contact"];
 const PROJECT_CATEGORIES = ["All", ...Array.from(new Set(profile.projects.map((p) => p.category)))];
 
 const education = [
@@ -200,7 +203,7 @@ function FlipCertCard({ cert }) {
         >
           <div className="font-mono text-[10px] text-white/30">Issued {cert.issued}</div>
           {cert.credentialId && (
-            <div className="font-mono text-[10px] text-white/25">ID: {cert.credentialId}</div>
+            <div className="truncate font-mono text-[10px] text-white/25">ID: {cert.credentialId}</div>
           )}
           {cert.verifyUrl !== "#" ? (
             <a
@@ -289,7 +292,9 @@ export default function AboutMe() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [copied, setCopied] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
-  const [expandedJobs, setExpandedJobs] = useState({ 0: true });
+  const [expandedJobs, setExpandedJobs] = useState(
+    Object.fromEntries(profile.experience.map((job, i) => [i, job.company === profile.company]))
+  );
 
   useEffect(() => {
     const ids = NAV_ITEMS.map((item) => item.toLowerCase());
@@ -433,8 +438,18 @@ export default function AboutMe() {
           </div>
 
           <div>
-            <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-400/65">{profile.title}</p>
-            <h1 className="font-display text-5xl font-bold leading-tight text-white md:text-6xl">{profile.name}</h1>
+            <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-400/65">
+              {profile.title}
+              {profile.experience?.[0]?.company && (
+                <span className="text-white/30"> · {profile.company}</span>
+              )}
+            </p>
+            <div className="flex items-baseline gap-3">
+              <h1 className="font-display text-5xl font-bold leading-tight text-white md:text-6xl">{profile.name}</h1>
+              {profile.pronouns && (
+                <span className="font-mono text-xs text-white/30">{profile.pronouns}</span>
+              )}
+            </div>
             <div className="mb-7 mt-2.5 flex items-center gap-1.5 font-mono text-xs text-white/30">
               <MapPin size={11} /><span>{profile.location}</span>
             </div>
@@ -487,7 +502,7 @@ export default function AboutMe() {
           <div className="relative">
             <div className="absolute left-[120px] top-0 hidden h-full w-px bg-gradient-to-b from-amber-400/30 via-white/[0.06] to-transparent md:block" />
             {profile.experience.map((job, i) => {
-              const isSysCloud = job.company === "SysCloud";
+              const isSysCloud = job.company === profile.company;
               const isOpen = !!expandedJobs[i];
               return (
                 <motion.div key={i}
@@ -698,6 +713,66 @@ export default function AboutMe() {
           </div>
         </Section>
 
+        {/* ── Leadership ───────────────────────────── */}
+        <Section id="leadership" title="Leadership" icon={Users}>
+          <div className="space-y-4">
+            {profile.leadership.map((item, i) => (
+              <motion.div key={item.title}
+                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="rounded-xl border border-amber-400/10 bg-amber-400/[0.02] p-5"
+              >
+                <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="text-sm font-semibold text-white/80">{item.title}</span>
+                  <span className="font-mono text-xs text-white/25">{item.period}</span>
+                </div>
+                <ul className="space-y-1.5">
+                  {item.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-2 text-xs leading-relaxed text-white/48">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-amber-400/40" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── Incident Response ────────────────────── */}
+        <Section id="incidents" title="Incident Response" icon={ShieldAlert}>
+          <div className="space-y-3">
+            {profile.incidents.map((inc, i) => (
+              <motion.div key={inc.title}
+                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
+                className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-colors hover:border-white/[0.1] hover:bg-white/[0.03]"
+              >
+                <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-medium ${
+                      inc.severity === "P1"
+                        ? "border-red-400/30 bg-red-400/10 text-red-400"
+                        : "border-amber-400/25 bg-amber-400/10 text-amber-400/80"
+                    }`}>{inc.severity}</span>
+                    <span className="text-sm font-semibold text-white/80">{inc.title}</span>
+                  </div>
+                  <span className="font-mono text-xs text-white/25">{inc.date}</span>
+                </div>
+                <p className="mb-2 text-xs leading-relaxed text-white/45">{inc.summary}</p>
+                <div className="mb-1.5 flex gap-1.5">
+                  <AlertTriangle size={11} className="mt-0.5 shrink-0 text-amber-400/50" />
+                  <p className="text-xs leading-relaxed text-white/38"><span className="text-amber-400/60">Resolution: </span>{inc.resolution}</p>
+                </div>
+                <div className="flex gap-1.5">
+                  <ShieldAlert size={11} className="mt-0.5 shrink-0 text-white/25" />
+                  <p className="text-xs leading-relaxed text-white/30"><span className="text-white/40">Impact: </span>{inc.impact}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </Section>
+
         {/* ── Contact ──────────────────────────────── */}
         <Section id="contact" title="Get in Touch" icon={Mail}>
           <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-8">
@@ -770,7 +845,7 @@ export default function AboutMe() {
         {/* ── Footer ───────────────────────────────── */}
         <footer className="mb-12 border-t border-white/[0.05] pt-6">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-xs text-white/22">© {new Date().getFullYear()} {profile.name}</span>
+            <span className="font-mono text-xs text-white/22">{profile.name} · {new Date().getFullYear()}</span>
             <span className="font-mono text-xs text-white/18">Built with React · Tailwind CSS</span>
           </div>
         </footer>
