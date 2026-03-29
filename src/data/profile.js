@@ -209,6 +209,15 @@ const profile = {
       credentialId: "",
       verifyUrl: "#",
     },
+    {
+      name: "Agentic AI Fundamentals: Architectures, Frameworks, and Applications",
+      issuer: "LinkedIn Learning",
+      abbr: "AI",
+      badgeColor: "blue",
+      issued: "2026",
+      credentialId: "",
+      verifyUrl: "#",
+    },
   ],
 
   contributions: [
