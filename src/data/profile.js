@@ -330,6 +330,46 @@ const profile = {
       category: "Cloud",
       tags: ["AWS RDS", "Cost Analysis", "GP3", "7 Regions"],
     },
+    {
+      name: "pg_repack Fleet Bloat Recovery — 122+ TB",
+      tagline:
+        "Zero-downtime table bloat recovery across 7-region RDS fleet using pg_repack. Recovered 122+ TB of dead tuple bloat during business hours with no customer impact.",
+      link: "#",
+      category: "Database",
+      tags: ["PostgreSQL", "pg_repack", "Zero-Downtime", "7 Regions"],
+    },
+    {
+      name: "Intelligence Plane — AI Agent Framework",
+      tagline:
+        "Contributed DAL/data layer architecture to SysCloud's Intelligence Plane AI Agent Framework — defining how agents interact with the platform's data infrastructure for next-gen AI-powered product capabilities.",
+      link: "#",
+      category: "AI / Architecture",
+      tags: ["AI Agents", "LLMs", "Data Architecture", "PostgreSQL"],
+    },
+    {
+      name: "PgBouncer Weighted Pool Allocation",
+      tagline:
+        "Designed and rolled out weighted pool allocation for PgBouncer across all 7 production regions — dynamically favouring healthier DB nodes to reduce connection saturation and improve query throughput for 5,000+ customers.",
+      link: "#",
+      category: "Infrastructure",
+      tags: ["PgBouncer", "PostgreSQL", "Connection Pooling", "7 Regions"],
+    },
+    {
+      name: "Aurora PostgreSQL Migration Proposal",
+      tagline:
+        "Authored full architecture for migrating 12 production Trans DB servers (384.6 TB) to Aurora PostgreSQL with dedicated read replicas — 3-year TCO model and HA failover strategy.",
+      link: "#",
+      category: "Architecture",
+      tags: ["Aurora PostgreSQL", "Read Replicas", "HA", "Cost Modelling"],
+    },
+    {
+      name: "Cognito User Management Enhancements",
+      tagline:
+        "Enhanced AWS Cognito user management layer with improved edge-case handling across user creation, update, and deletion flows — reducing silent auth failures across the platform's authentication surface.",
+      link: "#",
+      category: "Platform",
+      tags: ["AWS Cognito", "Authentication", "Node.js", "IAM"],
+    },
   ],
 };
 
