@@ -171,7 +171,7 @@ function FlipCertCard({ cert }) {
 
   return (
     <div
-      className="group relative h-28 cursor-pointer"
+      className="group relative h-36 cursor-pointer"
       style={{ perspective: 900 }}
       onClick={() => setFlipped((f) => !f)}
     >
