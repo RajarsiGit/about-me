@@ -54,6 +54,8 @@ const profile = {
         { name: "DynamoDB", slug: "FaAws" },
         { name: "MS SQL Server", slug: "FaMicrosoft" },
         { name: "PgBouncer", slug: null },
+        { name: "RDS Proxy", slug: null },
+        { name: "pg_partman", slug: null },
       ],
     },
     {
@@ -110,6 +112,7 @@ const profile = {
     { label: "Cloud Cost Saved (Year)", value: "$228K" },
     { label: "Data Under Management", value: "500+ TB" },
     { label: "Engineers Led (DAL Team)", value: "9" },
+    { label: "Cross-Training User Stories Authored", value: "128" },
   ],
 
   experience: [
@@ -274,6 +277,15 @@ const profile = {
         "Represented the DAL team in a formal external security assessment — presenting data access architecture, RLS policies, IAM posture, and multi-tenant isolation controls to auditors.",
       ],
     },
+    {
+      title: "DAL Knowledge Pack — Engineering Enablement Program",
+      period: "Q2 2026",
+      bullets: [
+        "Authored 32 Feature work items with 128 child User Stories spanning L1–L4 ownership tiers, building a structured cross-training path for the full DAL team across PostgreSQL, GraphQL, and AWS infrastructure domains.",
+        "Converted Fireflies-recorded DBA Drill sessions into Markdown operational runbooks (connection exhaustion, locks/deadlocks, RDS monitoring, autovacuum/bloat) published to the DAL AI Runbooks wiki.",
+        "Built the onboarding presentation and credential provisioning guide for a new Junior DBA hire, covering the complete SysCloud DAL stack.",
+      ],
+    },
   ],
 
   incidents: [
@@ -281,41 +293,56 @@ const profile = {
       title: "Japan Region SSO / Login Outage",
       severity: "P1",
       date: "January 2026",
-      summary: "Japan region UI became inaccessible due to a DAL-side config change that broke the app.syscloud.jp login handshake. Subsequent GraphQL requests succeeded via the canary route, masking the failure.",
-      resolution: "Identified root cause, remediated the config deprecation, and introduced permanent region-wise pre-release validation gates.",
-      impact: "Active revenue region with live customer demos and partner interactions — outage directly threatened SLA compliance and customer trust.",
+      summary:
+        "Japan region UI became inaccessible due to a DAL-side config change that broke the app.syscloud.jp login handshake. Subsequent GraphQL requests succeeded via the canary route, masking the failure.",
+      resolution:
+        "Identified root cause, remediated the config deprecation, and introduced permanent region-wise pre-release validation gates.",
+      impact:
+        "Active revenue region with live customer demos and partner interactions — outage directly threatened SLA compliance and customer trust.",
     },
     {
       title: "Google Drive & OneDrive Restore Failures",
       severity: "P1",
       date: "January 2026",
-      summary: "Critical incident where Google Drive and OneDrive restore operations were failing for affected customers across multiple accounts.",
-      resolution: "Identified and resolved the root cause, restoring full restore capability for all affected customers.",
-      impact: "Restore is SysCloud's core value proposition — Severity 1 event directly threatening customer retention and SLA compliance.",
+      summary:
+        "Critical incident where Google Drive and OneDrive restore operations were failing for affected customers across multiple accounts.",
+      resolution:
+        "Identified and resolved the root cause, restoring full restore capability for all affected customers.",
+      impact:
+        "Restore is SysCloud's core value proposition — Severity 1 event directly threatening customer retention and SLA compliance.",
     },
     {
       title: "DB Server Throttling & Google API Rate Limiting",
       severity: "P1",
       date: "March 2026",
-      summary: "Production issue involving database server throttling combined with Google API rate limiting on RLS03 / transdb-10, degrading backup job throughput.",
-      resolution: "Investigated and resolved throttling root cause, restoring full backup throughput for Google Workspace customers.",
-      impact: "Throttling on a transactional DB server cascades into backup SLA failures for all Google Workspace customers across the region.",
+      summary:
+        "Production issue involving database server throttling combined with Google API rate limiting on RLS03 / transdb-10, degrading backup job throughput.",
+      resolution:
+        "Investigated and resolved throttling root cause, restoring full backup throughput for Google Workspace customers.",
+      impact:
+        "Throttling on a transactional DB server cascades into backup SLA failures for all Google Workspace customers across the region.",
     },
     {
       title: "KMS AccessDeniedException — Hard-Delete S3",
       severity: "P1",
       date: "February – March 2026",
-      summary: "Two-phase investigation of KMS Decrypt AccessDeniedException in the hard-delete-s3 Lambda — tracing IAM role chain breakdown and identifying all affected business configurations.",
-      resolution: "Traced IAM role chain failure and remediated all affected businessinfo records to restore compliant data deletion.",
-      impact: "Hard-delete Lambda failures leave deleted customer data in S3 — a direct data residency compliance risk.",
+      summary:
+        "Two-phase investigation of KMS Decrypt AccessDeniedException in the hard-delete-s3 Lambda — tracing IAM role chain breakdown and identifying all affected business configurations.",
+      resolution:
+        "Traced IAM role chain failure and remediated all affected businessinfo records to restore compliant data deletion.",
+      impact:
+        "Hard-delete Lambda failures leave deleted customer data in S3 — a direct data residency compliance risk.",
     },
     {
       title: "TaskRegistry — Missing LoadQueryMetadata Handler",
       severity: "P2",
       date: "March 2026",
-      summary: "LoadQueryMetadata handler not registered in TaskRegistry for the getarchivedata-v3 MDL workflow, causing silent failures on ECS image postgraphile-server-terf-auto:243.",
-      resolution: "Diagnosed missed registration in the workflow initialisation sequence and added registration validation to the deployment checklist.",
-      impact: "Silent archive data query failures for affected customers. Checklist fix prevents recurrence across all future deployments.",
+      summary:
+        "LoadQueryMetadata handler not registered in TaskRegistry for the getarchivedata-v3 MDL workflow, causing silent failures on ECS image postgraphile-server-terf-auto:243.",
+      resolution:
+        "Diagnosed missed registration in the workflow initialisation sequence and added registration validation to the deployment checklist.",
+      impact:
+        "Silent archive data query failures for affected customers. Checklist fix prevents recurrence across all future deployments.",
     },
   ],
 
@@ -432,7 +459,7 @@ const profile = {
     {
       name: "AI Hunters — Autonomous PostgreSQL Monitor",
       tagline:
-        "Built an autonomous AI monitoring framework that dispatches Claude as a live DB investigator across SysCloud's entire Trans DB fleet — 35+ health checks (slow queries, autovacuum, bloat, XID wraparound, replica lag, sequence exhaustion), 5-min polling, MCP-integrated tooling (CloudWatch, Performance Insights, PgBouncer, pgDBA, Grafana, Sentry), and a deterministic verdict engine that resolves the majority of alerts without human review.",
+        "Designed the DAL AI Log Monitoring platform — a cron-based async system spanning 15 planned hunter modules across restore, export, backup, PgBouncer, PostGraphile, and S3 health domains. The slow-queries hunter alone dispatches Claude as a live DB investigator with 35+ health checks (autovacuum, bloat, XID wraparound, replica lag), 5-min polling, and MCP-integrated tooling (CloudWatch, Performance Insights, PgBouncer, pgDBA, Grafana, Sentry).",
       link: "#",
       category: "AI / Infrastructure",
       tags: ["Claude API", "MCP Servers", "PostgreSQL", "AI Agents", "AWS RDS"],
@@ -468,6 +495,14 @@ const profile = {
       link: "#",
       category: "Platform",
       tags: ["AWS Cognito", "Authentication", "Node.js", "IAM"],
+    },
+    {
+      name: "PgBouncer vs RDS Proxy Cost Analysis",
+      tagline:
+        "Ran a detailed cost and architecture comparison between PgBouncer and AWS RDS Proxy across the 22-instance us-east-1 fleet, confirming PgBouncer as the substantially cheaper option and informing the team's pooling strategy.",
+      link: "#",
+      category: "Cloud",
+      tags: ["PgBouncer", "RDS Proxy", "Cost Analysis", "AWS"],
     },
   ],
 };

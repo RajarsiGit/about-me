@@ -5,7 +5,11 @@
       "Bash(npm install:*)",
       "Bash(npm ls:*)",
       "WebFetch(domain:raianiket.github.io)",
-      "Bash(node --input-type=module:*)"
+      "Bash(node --input-type=module:*)",
+      "Bash(node -e \"require\\('@babel/core'\\)\")",
+      "Bash(node --check src/data/profile.js)",
+      "Bash(node -e ' *)",
+      "Bash(echo \"EXIT:$?\")"
     ]
   },
   "enabledMcpjsonServers": [
