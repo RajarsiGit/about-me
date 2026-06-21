@@ -7,5 +7,9 @@
       "WebFetch(domain:raianiket.github.io)",
       "Bash(node --input-type=module:*)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "aws-mcp"
+  ],
+  "enableAllProjectMcpServers": true
 }

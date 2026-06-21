@@ -39,6 +39,8 @@ const profile = {
     "AWS S3",
     "Jenkins",
     "AI Agents",
+    "Claude API",
+    "MCP Servers",
   ],
 
   // Grouped skills with brand slugs for icons (used by Skills section)
@@ -95,6 +97,8 @@ const profile = {
       skills: [
         { name: "GenAI / LLMs", slug: null },
         { name: "AI Agents", slug: null },
+        { name: "Claude API", slug: null },
+        { name: "MCP Servers", slug: null },
         { name: "Prompt Engineering", slug: null },
       ],
     },
@@ -394,14 +398,6 @@ const profile = {
       tags: ["PostgreSQL", "GraphQL", "Multi-Cloud", "SaaS"],
     },
     {
-      name: "PostGraphile Integration",
-      tagline:
-        "GraphQL web server deployment delivering 60% better frontend performance vs REST APIs with MS SQL Server.",
-      link: "#",
-      category: "Backend",
-      tags: ["PostGraphile", "GraphQL", "Node.js", "Performance"],
-    },
-    {
       name: "RBAC Architecture Migration & MVW Performance",
       tagline:
         "73% full-stack refresh improvement and 97% addon aggregation gain (7m 41s → 15s) on 1.2M-row production tables.",
@@ -432,6 +428,14 @@ const profile = {
       link: "#",
       category: "Database",
       tags: ["PostgreSQL", "pg_repack", "Zero-Downtime", "7 Regions"],
+    },
+    {
+      name: "AI Hunters — Autonomous PostgreSQL Monitor",
+      tagline:
+        "Built an autonomous AI monitoring framework that dispatches Claude as a live DB investigator across SysCloud's entire Trans DB fleet — 35+ health checks (slow queries, autovacuum, bloat, XID wraparound, replica lag, sequence exhaustion), 5-min polling, MCP-integrated tooling (CloudWatch, Performance Insights, PgBouncer, pgDBA, Grafana, Sentry), and a deterministic verdict engine that resolves the majority of alerts without human review.",
+      link: "#",
+      category: "AI / Infrastructure",
+      tags: ["Claude API", "MCP Servers", "PostgreSQL", "AI Agents", "AWS RDS"],
     },
     {
       name: "Intelligence Plane — AI Agent Framework",
