@@ -4,83 +4,155 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-### Core Development
-- `npm run dev` - Start development server with hot module replacement
-- `npm run build` - Build production bundle to `dist/` directory
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run ESLint to check code quality and style
-
-### Project Structure
-This is a React + Vite personal portfolio/about-me website with the following architecture:
-
-```
-src/
-├── main.jsx                  # Application entry point
-├── App.jsx                   # Root component (renders AboutMe)
-├── AboutMe.jsx               # Main layout, section orchestration, inline UI components
-├── index.css                 # Global styles (Tailwind base)
-├── App.css                   # Component styles
-├── data/
-│   └── profile.js            # All personal/professional content (single source of truth)
-├── components/
-│   ├── Section.jsx           # Reusable section wrapper with heading
-│   ├── Chip.jsx              # Tag/chip badge component
-│   ├── SocialIcon.jsx        # Social link with Simple Icons brand icon
-│   ├── ChatBot.jsx           # AI chat assistant (Anthropic Claude API)
-│   └── SearchModal.jsx       # Full-text search overlay
-└── utils/
-    ├── yearsFrom.js          # Calculates years elapsed from an ISO date string
-    └── downloadAsPdf.js      # PDF export via html2canvas + jsPDF
+```bash
+npm run dev       # Start dev server with HMR (http://localhost:5173)
+npm run build     # Production bundle → dist/
+npm run preview   # Preview production build locally
+npm run lint      # ESLint check
 ```
 
-### Technology Stack
-- **Build Tool**: Vite with React plugin
-- **Styling**: Tailwind CSS with PostCSS
-- **Icons**: Lucide React + Simple Icons
-- **Animation**: Framer Motion (transitions, AnimatedStat counter, TiltAvatar)
-- **AI**: Anthropic Claude API (ChatBot component)
-- **PDF Export**: html2canvas + jsPDF
-- **Content**: React Markdown with remark-gfm for GitHub Flavored Markdown support
+## Project Overview
 
-### Architecture Notes
+React + Vite personal portfolio/about-me website for Rajarsi Saha (Technical Architect at SysCloud). Dark-themed, single-page application with animated UI, an AI chatbot, and full-text search.
 
-#### Component Structure
-`AboutMe.jsx` handles the main layout and contains a few inline UI components (`AnimatedStat`, `TiltAvatar`). Reusable components live in `src/components/`. Utilities live in `src/utils/`.
+## Project Structure
 
-#### Data Configuration
-All personal and professional content is centralized in `src/data/profile.js`. The `profile` object contains:
-- Basic info (name, title, location, summary, avatar, phone, resumeUrl)
-- Social links with Simple Icons slugs
-- `skills` — flat array used by the search index
-- `skillGroups` — grouped skills with brand slugs for the Skills section UI
-- `highlights` — animated stat counters shown in the hero
-- `experience` — work history with bullet points
-- `certifications` — credentials with issuer, year, and verify URL
-- `contributions` — open-source and collaborative work entries
-- `writings` — articles and blog posts with tags
-- `projects` — portfolio items with category for filtering
+```
+about-me/
+├── index.html
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+├── public/
+│   └── Profile.pdf               # Resume served at /Profile.pdf
+└── src/
+    ├── main.jsx                  # React DOM entry point
+    ├── App.jsx                   # Root component — renders <AboutMe />
+    ├── App.css                   # (minimal, mostly unused)
+    ├── index.css                 # Global styles: Tailwind base + scrollbar + selection + .backface-hidden
+    ├── data/
+    │   └── profile.js            # SINGLE SOURCE OF TRUTH for all content
+    ├── components/
+    │   ├── Section.jsx           # Scroll-animated section wrapper with amber-accent heading
+    │   ├── Chip.jsx              # Generic tag/badge — amber hover
+    │   ├── SocialIcon.jsx        # Brand icon: simple-icons (PascalCase slug) or react-icons/fa6 (Fa* slug)
+    │   ├── ChatBot.jsx           # Floating AI chat (Anthropic claude-haiku via browser SDK)
+    │   └── SearchModal.jsx       # ⌘K / Ctrl+K full-text search overlay
+    ├── utils/
+    │   ├── yearsFrom.js          # yearsFrom("YYYY-MM-DD") → "N+" string
+    │   └── downloadAsPdf.js      # downloadAsPdf(elementId, filename) via html2pdf.js
+    └── AboutMe.jsx               # Main layout + all inline UI primitives (see below)
+```
 
-#### Icon System
-Uses a hybrid approach:
-- Lucide React for UI icons (Mail, MapPin, Download, etc.)
-- Simple Icons for brand/technology icons (accessed via slugs like `"postgresql"`, `"amazonaws"`)
+### Inline components in `AboutMe.jsx`
 
-#### Styling Approach
-- Tailwind CSS for all styling
-- Dark theme with custom gradient backgrounds and glassmorphism effects
-- Responsive design with mobile-first approach
-- Framer Motion for animations (page transitions, scroll-triggered counters, hover effects)
+These live directly in `AboutMe.jsx` rather than `src/components/` because they are tightly coupled to this page's data and layout:
 
-### Key Files to Modify
+| Component | Purpose |
+|---|---|
+| `AnimatedStat` | Scroll-triggered counter for hero highlights. Uses IntersectionObserver + interval. |
+| `TiltAvatar` | 3D perspective tilt on avatar image via Framer Motion `useMotionValue` + `useSpring`. |
+| `TiltCard` | Same 3D tilt + radial cursor-following glow for project cards. |
+| `FlipCertCard` | CSS 3D flip card (front: cert name/issuer, back: credential ID + verify link). |
+| `SkillChip` | Color-coded skill badge with optional brand icon via `SocialIcon`. |
+| `Tag` | Minimal monospace project tag. |
+| `ExpandableCard` | Click-to-expand wrapper for publications and open source entries. |
 
-**For content changes**: Edit `src/data/profile.js`
-**For styling changes**: Modify Tailwind classes in the relevant component or adjust `tailwind.config.js`
-**For adding new icons**: Use Simple Icons slugs or add new Lucide React imports
-**For layout changes**: Modify the component structure in `src/AboutMe.jsx`
-**For new sections**: Add a component in `src/components/` and wire it into `src/AboutMe.jsx`
+## Technology Stack
 
-### ESLint Configuration
-Custom rules include:
-- Unused variables allowed if they match pattern `^[A-Z_]` (for constants)
-- React Hooks and React Refresh plugins enabled
-- Ignores `dist/` directory in builds
+| Concern | Library | Version |
+|---|---|---|
+| Build | Vite + `@vitejs/plugin-react` | ^7.1.2 |
+| UI framework | React 19 | ^19.1.1 |
+| Styling | Tailwind CSS 3 + PostCSS | ^3.4.14 |
+| Animation | Framer Motion | ^12.23.12 |
+| Icons (UI) | Lucide React | ^0.539.0 |
+| Icons (brand) | simple-icons + react-icons/fa6 | ^15.11.0 / ^5.6.0 |
+| AI chatbot | `@anthropic-ai/sdk` (browser) | ^0.80.0 |
+| PDF export | html2pdf.js | ^0.14.0 |
+| Markdown | react-markdown + remark-gfm | ^10.1.0 / ^4.0.1 |
+
+## Architecture Notes
+
+### Data layer — `src/data/profile.js`
+
+**All content changes go here.** The `profile` default export contains:
+
+```
+profile.name / title / company / location / summary / avatar / phone / resumeUrl / pronouns
+profile.socials[]          — { name, href, slug } for SocialIcon
+profile.skills[]           — flat string array → used by SearchModal index
+profile.skillGroups[]      — { label, color, skills[{ name, slug }] } → Skills section
+profile.highlights[]       — { label, value } → AnimatedStat in hero
+profile.experience[]       — { role, company, period, bullets[] }
+profile.certifications[]   — { name, issuer, abbr, badgeColor, issued, credentialId, verifyUrl }
+profile.leadership[]       — { title, period, bullets[] }
+profile.incidents[]        — { title, severity, date, summary, resolution, impact }
+profile.contributions[]    — { project, role, description, url, tags[] }
+profile.writings[]         — { title, type, description, url, date, tags[] }
+profile.projects[]         — { name, tagline, link, category, tags[] }
+```
+
+`yearsFrom("2021-01-01")` is called inside `profile.js` so the years-of-experience value is always current.
+
+### Navigation
+
+`NAV_ITEMS` in `AboutMe.jsx` drives both the top nav bar and mobile drawer:
+```js
+const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Leadership", "Incidents", "Contact"];
+```
+Each item maps to a section `id` by `.toLowerCase()`. Adding a nav item requires: add to `NAV_ITEMS`, add a `<Section id="...">` in the JSX, and add a matching entry to `SECTIONS` in `SearchModal.jsx`.
+
+### Icon system
+
+`SocialIcon` handles two icon sources via the `slug` prop:
+
+- **`Fa*` prefix** → `react-icons/fa6` (e.g. `"FaAws"`, `"FaMicrosoft"`, `"FaLinkedin"`)
+- **PascalCase** → `simple-icons` prefixed with `si` (e.g. `"Postgresql"` → `siPostgresql`)
+- **`null` slug** → renders no icon, just the label text
+
+### ChatBot (`src/components/ChatBot.jsx`)
+
+- Uses `@anthropic-ai/sdk` directly in the browser (`dangerouslyAllowBrowser: true`)
+- API key read from `VITE_ANTHROPIC_API_KEY` env var (must be set in `.env.local`)
+- Model: `claude-haiku-4-5-20251001` (fast, low-cost for embedded chat)
+- System prompt is built at module load time from `profile` data (experience, projects, certifications, education)
+- Stateless: conversation history held in React state, cleared on page reload
+
+### PDF Export (`src/utils/downloadAsPdf.js`)
+
+`downloadAsPdf("resume-root", "Rajarsi_Saha_Resume.pdf")` captures the element with `id="resume-root"` (the entire `<main>` in `AboutMe.jsx`) using html2pdf.js at 2× scale on A4 portrait.
+
+### Styling conventions
+
+- **Color palette**: `canvas` (`#0d0d10`), `card` (`#141419`), amber-400 (`#fbbf24`) as accent
+- **Typography**: `font-display` = Playfair Display, `font-sans` = Outfit, `font-mono` = JetBrains Mono
+- **Glassmorphism**: `bg-white/[0.02]` + `border-white/[0.06]` pattern throughout
+- **Dark opacity scale**: `text-white/80` → `text-white/50` → `text-white/30` → `text-white/18` for hierarchy
+- **Hover glow**: `hover:shadow-[0_0_12px_rgba(R,G,B,0.25)]` per color theme
+- **Amber highlight**: `text-amber-400`, `border-amber-400/20`, `hover:border-amber-400/30`
+
+## Key Files to Modify
+
+| Task | File(s) |
+|---|---|
+| Add/edit content (jobs, projects, skills, certs, etc.) | `src/data/profile.js` |
+| Add a new page section | `src/components/` (new component) + wire into `src/AboutMe.jsx` + add to `NAV_ITEMS` + `SearchModal.jsx` `SECTIONS` |
+| Change layout or section order | `src/AboutMe.jsx` |
+| Change color theme / fonts | `tailwind.config.js` |
+| Change global base styles | `src/index.css` |
+| Add a new brand icon | Use a Simple Icons PascalCase slug or a `Fa*` slug from react-icons/fa6 |
+| Change chatbot behavior/model | `src/components/ChatBot.jsx` |
+| Change PDF export options | `src/utils/downloadAsPdf.js` |
+
+## Environment Variables
+
+```
+VITE_ANTHROPIC_API_KEY=sk-ant-...    # Required for ChatBot. Set in .env.local (not committed).
+```
+
+## ESLint Configuration
+
+- Unused variables allowed if name matches `^[A-Z_]` (covers exported constants)
+- `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh` enabled
+- `dist/` directory excluded from linting

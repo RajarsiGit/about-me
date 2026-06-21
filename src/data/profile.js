@@ -39,6 +39,7 @@ const profile = {
     "AWS S3",
     "Jenkins",
     "AI Agents",
+    "AWS DMS",
     "Claude API",
     "MCP Servers",
   ],
@@ -53,6 +54,7 @@ const profile = {
         { name: "AWS RDS / Aurora", slug: null },
         { name: "DynamoDB", slug: "FaAws" },
         { name: "MS SQL Server", slug: "FaMicrosoft" },
+        { name: "AWS DMS", slug: "FaAws" },
         { name: "PgBouncer", slug: null },
         { name: "RDS Proxy", slug: null },
         { name: "pg_partman", slug: null },
@@ -102,6 +104,7 @@ const profile = {
         { name: "Claude API", slug: null },
         { name: "MCP Servers", slug: null },
         { name: "Prompt Engineering", slug: null },
+        { name: "Claude Code", slug: "Anthropic" },
       ],
     },
   ],
@@ -156,6 +159,7 @@ const profile = {
         "Built foundational components of the Meta Data Layer Framework for multi-cloud SaaS application backup.",
         "Worked on PostGraphile-based GraphQL web servers in collaboration with Benjie Gillam (creator of PostGraphile).",
         "Set up Liquibase pipelines for PostgreSQL database CI/CD across multiple servers and AWS regions.",
+        "Core contributor to the year-long migration of 800+ MSSQL databases from EC2 instances to PostgreSQL on Amazon RDS — designed AWS DMS replication workflows and orchestrated DynamoDB login record updates for all migrated tenants.",
       ],
     },
     {
@@ -359,6 +363,21 @@ const profile = {
 
   writings: [
     {
+      title: "Implementing Row-Level Security on Billion-Row Hash-Partitioned PostgreSQL Tables",
+      type: "Medium Article",
+      description:
+        "Deep dive into applying PostgreSQL Row-Level Security on billion-row hash-partitioned tables — covering partition-aware policy design, performance implications of RLS on large datasets, and production lessons from SysCloud's multi-tenant data architecture.",
+      url: "https://medium.com/datadriveninvestor/implementing-row-level-security-on-billion-row-hash-partitioned-postgresql-tables-f617ce5045ef",
+      date: "April 2026",
+      tags: [
+        "PostgreSQL",
+        "Row-Level Security",
+        "Hash Partitioning",
+        "Multi-Tenant",
+        "Performance",
+      ],
+    },
+    {
       title: "Indexes don't lie — but they don't tell the whole story either",
       type: "LinkedIn Article",
       description:
@@ -400,6 +419,14 @@ const profile = {
   ],
 
   projects: [
+    {
+      name: "MSSQL → PostgreSQL Migration — 800+ Databases",
+      tagline:
+        "Year-long migration of 800+ MSSQL databases from EC2 instances to PostgreSQL on Amazon RDS. Designed AWS DMS replication workflows and orchestrated DynamoDB login record updates across all migrated tenants.",
+      link: "#",
+      category: "Database",
+      tags: ["AWS DMS", "PostgreSQL", "MS SQL Server", "DynamoDB", "Amazon RDS"],
+    },
     {
       name: "PostgreSQL Performance Engineering",
       tagline:

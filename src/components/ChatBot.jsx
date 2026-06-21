@@ -116,13 +116,15 @@ export default function ChatBot() {
       });
 
       await stream.finalMessage();
-    } catch {
+    } catch (err) {
+      const isOffline = !navigator.onLine || err instanceof TypeError;
       setMessages((prev) => {
         const updated = [...prev];
         updated[updated.length - 1] = {
           role: "assistant",
-          content:
-            "Something went wrong. Please try reaching out via email at rajarsi3997@gmail.com.",
+          content: isOffline
+            ? "You appear to be offline. Please check your connection and try again."
+            : "Something went wrong. Please try reaching out via email at rajarsi3997@gmail.com.",
         };
         return updated;
       });
