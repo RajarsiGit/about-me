@@ -292,64 +292,6 @@ const profile = {
     },
   ],
 
-  incidents: [
-    {
-      title: "Japan Region SSO / Login Outage",
-      severity: "P1",
-      date: "January 2026",
-      summary:
-        "Japan region UI became inaccessible due to a DAL-side config change that broke the app.syscloud.jp login handshake. Subsequent GraphQL requests succeeded via the canary route, masking the failure.",
-      resolution:
-        "Identified root cause, remediated the config deprecation, and introduced permanent region-wise pre-release validation gates.",
-      impact:
-        "Active revenue region with live customer demos and partner interactions — outage directly threatened SLA compliance and customer trust.",
-    },
-    {
-      title: "Google Drive & OneDrive Restore Failures",
-      severity: "P1",
-      date: "January 2026",
-      summary:
-        "Critical incident where Google Drive and OneDrive restore operations were failing for affected customers across multiple accounts.",
-      resolution:
-        "Identified and resolved the root cause, restoring full restore capability for all affected customers.",
-      impact:
-        "Restore is SysCloud's core value proposition — Severity 1 event directly threatening customer retention and SLA compliance.",
-    },
-    {
-      title: "DB Server Throttling & Google API Rate Limiting",
-      severity: "P1",
-      date: "March 2026",
-      summary:
-        "Production issue involving database server throttling combined with Google API rate limiting on RLS03 / transdb-10, degrading backup job throughput.",
-      resolution:
-        "Investigated and resolved throttling root cause, restoring full backup throughput for Google Workspace customers.",
-      impact:
-        "Throttling on a transactional DB server cascades into backup SLA failures for all Google Workspace customers across the region.",
-    },
-    {
-      title: "KMS AccessDeniedException — Hard-Delete S3",
-      severity: "P1",
-      date: "February – March 2026",
-      summary:
-        "Two-phase investigation of KMS Decrypt AccessDeniedException in the hard-delete-s3 Lambda — tracing IAM role chain breakdown and identifying all affected business configurations.",
-      resolution:
-        "Traced IAM role chain failure and remediated all affected businessinfo records to restore compliant data deletion.",
-      impact:
-        "Hard-delete Lambda failures leave deleted customer data in S3 — a direct data residency compliance risk.",
-    },
-    {
-      title: "TaskRegistry — Missing LoadQueryMetadata Handler",
-      severity: "P2",
-      date: "March 2026",
-      summary:
-        "LoadQueryMetadata handler not registered in TaskRegistry for the getarchivedata-v3 MDL workflow, causing silent failures on ECS image postgraphile-server-terf-auto:243.",
-      resolution:
-        "Diagnosed missed registration in the workflow initialisation sequence and added registration validation to the deployment checklist.",
-      impact:
-        "Silent archive data query failures for affected customers. Checklist fix prevents recurrence across all future deployments.",
-    },
-  ],
-
   contributions: [
     {
       project: "PostGraphile",

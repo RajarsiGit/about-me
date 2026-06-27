@@ -21,8 +21,6 @@ import {
   FileText,
   ExternalLink,
   Users,
-  ShieldAlert,
-  AlertTriangle,
   WifiOff,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
@@ -34,7 +32,7 @@ import SearchModal from "./components/SearchModal";
 import { downloadAsPdf } from "./utils/downloadAsPdf";
 
 const ICON_COLOR = "rgba(255,255,255,0.5)";
-const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Leadership", "Incidents", "Contact"];
+const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Leadership", "Contact"];
 const PROJECT_CATEGORIES = ["All", ...Array.from(new Set(profile.projects.map((p) => p.category)))];
 
 const education = [
@@ -770,40 +768,6 @@ export default function AboutMe() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── Incident Response ────────────────────── */}
-        <Section id="incidents" title="Incident Response" icon={ShieldAlert}>
-          <div className="space-y-3">
-            {profile.incidents.map((inc, i) => (
-              <motion.div key={inc.title}
-                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-colors hover:border-white/[0.1] hover:bg-white/[0.03]"
-              >
-                <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-medium ${
-                      inc.severity === "P1"
-                        ? "border-red-400/30 bg-red-400/10 text-red-400"
-                        : "border-amber-400/25 bg-amber-400/10 text-amber-400/80"
-                    }`}>{inc.severity}</span>
-                    <span className="text-sm font-semibold text-white/80">{inc.title}</span>
-                  </div>
-                  <span className="font-mono text-xs text-white/25">{inc.date}</span>
-                </div>
-                <p className="mb-2 text-xs leading-relaxed text-white/45">{inc.summary}</p>
-                <div className="mb-1.5 flex gap-1.5">
-                  <AlertTriangle size={11} className="mt-0.5 shrink-0 text-amber-400/50" />
-                  <p className="text-xs leading-relaxed text-white/38"><span className="text-amber-400/60">Resolution: </span>{inc.resolution}</p>
-                </div>
-                <div className="flex gap-1.5">
-                  <ShieldAlert size={11} className="mt-0.5 shrink-0 text-white/25" />
-                  <p className="text-xs leading-relaxed text-white/30"><span className="text-white/40">Impact: </span>{inc.impact}</p>
-                </div>
               </motion.div>
             ))}
           </div>
