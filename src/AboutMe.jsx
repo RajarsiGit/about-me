@@ -32,7 +32,9 @@ import SearchModal from "./components/SearchModal";
 import { downloadAsPdf } from "./utils/downloadAsPdf";
 
 const ICON_COLOR = "rgba(255,255,255,0.5)";
-const NAV_ITEMS = ["About", "Skills", "Experience", "Certifications", "Projects", "Open Source", "Publications", "Education", "Leadership", "Contact"];
+const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Leadership", "Contact"];
+const MORE_NAV_ITEMS = ["Certifications", "Open Source", "Publications", "Education"];
+const ALL_NAV_ITEMS = [...NAV_ITEMS, ...MORE_NAV_ITEMS];
 const toId = (item) => item.toLowerCase().replace(/\s+/g, "-");
 const PROJECT_CATEGORIES = ["All", ...Array.from(new Set(profile.projects.map((p) => p.category)))];
 
@@ -318,6 +320,47 @@ function OfflineBanner() {
   );
 }
 
+function NavMoreDropdown({ activeSection }) {
+  const [open, setOpen] = useState(false);
+  const isAnyActive = MORE_NAV_ITEMS.some((item) => activeSection === toId(item));
+
+  return (
+    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+      <button
+        className={`flex items-center gap-1 font-mono text-[11px] uppercase tracking-widest transition-colors duration-200 ${isAnyActive ? "text-amber-400" : "text-white/30 hover:text-white/60"}`}
+      >
+        More
+        <ChevronDown size={10} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.14, ease: "easeOut" }}
+            className="absolute right-0 top-[calc(100%+4px)] z-50 min-w-[160px] overflow-hidden rounded-xl border border-white/[0.08] bg-[#0f0f14] py-1.5 shadow-2xl shadow-black/60"
+          >
+            {MORE_NAV_ITEMS.map((item) => {
+              const isActive = activeSection === toId(item);
+              return (
+                <a
+                  key={item}
+                  href={`#${toId(item)}`}
+                  onClick={() => setOpen(false)}
+                  className={`block px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest transition-colors ${isActive ? "bg-amber-400/10 text-amber-400" : "text-white/40 hover:bg-white/[0.04] hover:text-white/70"}`}
+                >
+                  {item}
+                </a>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function AboutMe() {
   const [activeSection, setActiveSection] = useState("about");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -331,7 +374,7 @@ export default function AboutMe() {
   );
 
   useEffect(() => {
-    const ids = NAV_ITEMS.map(toId);
+    const ids = ALL_NAV_ITEMS.map(toId);
     const observers = ids.map((id) => {
       const el = document.getElementById(id);
       if (!el) return null;
@@ -404,10 +447,10 @@ export default function AboutMe() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
             <div className="h-4 w-[2px] bg-amber-400" />
-            <span className="font-mono text-sm tracking-wide text-white/75">{profile.name}</span>
+            <span className="whitespace-nowrap font-mono text-sm tracking-wide text-white/75">{profile.name}</span>
           </div>
           <div className="flex items-center gap-3">
-            <nav className="hidden gap-8 md:flex">
+            <nav className="hidden items-center gap-6 md:flex">
               {NAV_ITEMS.map((item) => {
                 const isActive = activeSection === toId(item);
                 return (
@@ -424,6 +467,7 @@ export default function AboutMe() {
                   </a>
                 );
               })}
+              <NavMoreDropdown activeSection={activeSection} />
             </nav>
             <button onClick={() => setSearchOpen(true)}
               className="flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/30 transition-colors hover:border-white/[0.15] hover:text-white/55">
@@ -442,7 +486,7 @@ export default function AboutMe() {
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }} className="overflow-hidden border-t border-white/[0.06] md:hidden">
               <nav className="flex flex-col gap-1 px-6 py-3">
-                {NAV_ITEMS.map((item) => {
+                {ALL_NAV_ITEMS.map((item) => {
                   const isActive = activeSection === toId(item);
                   return (
                     <a key={item} href={`#${toId(item)}`}
