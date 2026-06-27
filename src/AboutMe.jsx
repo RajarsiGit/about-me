@@ -32,7 +32,7 @@ import SearchModal from "./components/SearchModal";
 import { downloadAsPdf } from "./utils/downloadAsPdf";
 
 const ICON_COLOR = "rgba(255,255,255,0.5)";
-const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Open Source", "Publications", "Education", "Leadership", "Contact"];
+const NAV_ITEMS = ["About", "Skills", "Experience", "Certifications", "Projects", "Open Source", "Publications", "Education", "Leadership", "Contact"];
 const toId = (item) => item.toLowerCase().replace(/\s+/g, "-");
 const PROJECT_CATEGORIES = ["All", ...Array.from(new Set(profile.projects.map((p) => p.category)))];
 

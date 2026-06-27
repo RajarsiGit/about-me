@@ -54,7 +54,24 @@ const INDEX = [
     href: "#publications",
     description: w.description,
   })),
+  ...profile.leadership.map((l) => ({
+    type: "leadership",
+    label: l.title,
+    href: "#leadership",
+    description: l.period,
+  })),
 ];
+
+const TYPE_LABEL = {
+  section:       "section",
+  skill:         "skill",
+  project:       "project",
+  experience:    "experience",
+  certification: "cert",
+  "open-source": "open source",
+  writing:       "writing",
+  leadership:    "leadership",
+};
 
 const TYPE_STYLE = {
   section:       "text-blue-400/75 bg-blue-400/10",
@@ -64,6 +81,7 @@ const TYPE_STYLE = {
   certification: "text-orange-400/75 bg-orange-400/10",
   "open-source": "text-teal-400/75 bg-teal-400/10",
   writing:       "text-rose-400/75 bg-rose-400/10",
+  leadership:    "text-cyan-400/75 bg-cyan-400/10",
 };
 
 export default function SearchModal({ open, onClose }) {
@@ -194,7 +212,7 @@ export default function SearchModal({ open, onClose }) {
                     <span
                       className={`shrink-0 rounded px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest ${TYPE_STYLE[item.type]}`}
                     >
-                      {item.type}
+                      {TYPE_LABEL[item.type] ?? item.type}
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-medium text-white/72">{item.label}</div>
