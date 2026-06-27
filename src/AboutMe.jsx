@@ -32,7 +32,8 @@ import SearchModal from "./components/SearchModal";
 import { downloadAsPdf } from "./utils/downloadAsPdf";
 
 const ICON_COLOR = "rgba(255,255,255,0.5)";
-const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Leadership", "Contact"];
+const NAV_ITEMS = ["About", "Skills", "Experience", "Projects", "Open Source", "Publications", "Education", "Leadership", "Contact"];
+const toId = (item) => item.toLowerCase().replace(/\s+/g, "-");
 const PROJECT_CATEGORIES = ["All", ...Array.from(new Set(profile.projects.map((p) => p.category)))];
 
 const education = [
@@ -330,7 +331,7 @@ export default function AboutMe() {
   );
 
   useEffect(() => {
-    const ids = NAV_ITEMS.map((item) => item.toLowerCase());
+    const ids = NAV_ITEMS.map(toId);
     const observers = ids.map((id) => {
       const el = document.getElementById(id);
       if (!el) return null;
@@ -408,9 +409,9 @@ export default function AboutMe() {
           <div className="flex items-center gap-3">
             <nav className="hidden gap-8 md:flex">
               {NAV_ITEMS.map((item) => {
-                const isActive = activeSection === item.toLowerCase();
+                const isActive = activeSection === toId(item);
                 return (
-                  <a key={item} href={`#${item.toLowerCase()}`}
+                  <a key={item} href={`#${toId(item)}`}
                     className={`relative font-mono text-[11px] uppercase tracking-widest transition-colors duration-200 ${isActive ? "text-amber-400" : "text-white/30 hover:text-white/60"}`}
                   >
                     {item}
@@ -442,10 +443,10 @@ export default function AboutMe() {
               transition={{ duration: 0.2, ease: "easeInOut" }} className="overflow-hidden border-t border-white/[0.06] md:hidden">
               <nav className="flex flex-col gap-1 px-6 py-3">
                 {NAV_ITEMS.map((item) => {
-                  const isActive = activeSection === item.toLowerCase();
+                  const isActive = activeSection === toId(item);
                   return (
-                    <a key={item} href={`#${item.toLowerCase()}`}
-                      onClick={(e) => { e.preventDefault(); handleNavClick(`#${item.toLowerCase()}`); }}
+                    <a key={item} href={`#${toId(item)}`}
+                      onClick={(e) => { e.preventDefault(); handleNavClick(`#${toId(item)}`); }}
                       className={`rounded-md px-3 py-2.5 font-mono text-xs uppercase tracking-widest transition-colors ${isActive ? "bg-amber-400/10 text-amber-400" : "text-white/40 hover:bg-white/[0.04] hover:text-white/70"}`}>
                       {item}
                     </a>
@@ -838,6 +839,11 @@ export default function AboutMe() {
                 className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-2.5 text-sm text-white/50 transition-colors hover:border-white/[0.18] hover:text-white/70">
                 <Download size={14} /> Download Résumé
               </motion.button>
+              <motion.a href={profile.socials.find((s) => s.name === "LinkedIn")?.href} target="_blank" rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-2.5 text-sm text-white/50 transition-colors hover:border-white/[0.18] hover:text-white/70">
+                <ExternalLink size={14} /> LinkedIn
+              </motion.a>
             </div>
           </div>
         </Section>

@@ -11,6 +11,8 @@ const SECTIONS = [
   { label: "Projects",             href: "#projects",        description: "Selected engineering work" },
   { label: "Open Source",          href: "#open-source",     description: "Community contributions" },
   { label: "Publications",         href: "#publications",    description: "Design docs & writing" },
+  { label: "Education",            href: "#education",       description: "Academic background" },
+  { label: "Leadership",           href: "#leadership",      description: "Team & org initiatives" },
   { label: "Contact",              href: "#contact",         description: "Get in touch" },
 ];
 
