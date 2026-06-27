@@ -21,14 +21,22 @@ import {
   FileText,
   ExternalLink,
   Users,
-  WifiOff,
 } from "lucide-react";
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import profile from "./data/profile";
 import Section from "./components/Section";
 import SocialIcon from "./components/SocialIcon";
 import ChatBot from "./components/ChatBot";
 import SearchModal from "./components/SearchModal";
+import PageLoader from "./components/PageLoader";
+import AnimatedStat from "./components/AnimatedStat";
+import TiltAvatar from "./components/TiltAvatar";
+import TiltCard from "./components/TiltCard";
+import FlipCertCard from "./components/FlipCertCard";
+import SkillChip, { ROW_GLOW, GLOW_COLOR } from "./components/SkillChip";
+import Tag from "./components/Tag";
+import ExpandableCard from "./components/ExpandableCard";
+import OfflineBanner from "./components/OfflineBanner";
 import { downloadAsPdf } from "./utils/downloadAsPdf";
 
 const ICON_COLOR = "rgba(255,255,255,0.5)";
@@ -42,283 +50,6 @@ const education = [
   { degree: "Master of Science — Computer Science", school: "Pondicherry University", period: "2019 – 2021" },
   { degree: "Bachelor of Science — Computer Science", school: "St. Xavier's College (Autonomous), Kolkata", period: "2016 – 2019" },
 ];
-
-// ── Animated counter ──────────────────────────────────────────────────────────
-function AnimatedStat({ value, label }) {
-  const [displayed, setDisplayed] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef(null);
-
-  // Parse numeric part
-  const numericStr = String(value).replace(/[^0-9.]/g, "");
-  const suffix = String(value).replace(/[0-9.]/g, "");
-  const target = parseFloat(numericStr) || 0;
-  const isInt = !numericStr.includes(".");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !started) setStarted(true); },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
-    const duration = 1200;
-    const steps = 40;
-    const interval = duration / steps;
-    let step = 0;
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayed(isInt ? Math.round(target * eased) : parseFloat((target * eased).toFixed(1)));
-      if (step >= steps) clearInterval(timer);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [started, target, isInt]);
-
-  return (
-    <motion.div
-      ref={ref}
-      whileHover={{ scale: 1.03, y: -2 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="cursor-default rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 transition-colors hover:border-amber-400/20 hover:bg-amber-400/[0.03]"
-    >
-      <div className="font-display text-3xl font-bold text-amber-400">
-        {displayed}{suffix}
-      </div>
-      <div className="mt-1 font-mono text-[10px] leading-snug text-white/30">{label}</div>
-    </motion.div>
-  );
-}
-
-// ── Avatar tilt ───────────────────────────────────────────────────────────────
-function TiltAvatar({ src, alt }) {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 20 });
-
-  const onMove = (e) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-  const onLeave = () => { x.set(0); y.set(0); };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ rotateX, rotateY, transformPerspective: 600 }}
-      className="relative cursor-pointer"
-    >
-      <div className="absolute -inset-[3px] rounded-2xl bg-gradient-to-br from-amber-400/20 via-amber-400/5 to-transparent" />
-      <img src={src} alt={alt} className="relative h-44 w-44 rounded-2xl object-cover" />
-    </motion.div>
-  );
-}
-
-// ── 3D tilt project card ──────────────────────────────────────────────────────
-function TiltCard({ children, className }) {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [5, -5]), { stiffness: 300, damping: 25 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-5, 5]), { stiffness: 300, damping: 25 });
-  const glowX = useTransform(x, [-0.5, 0.5], [0, 100]);
-  const glowY = useTransform(y, [-0.5, 0.5], [0, 100]);
-
-  const onMove = (e) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-  const onLeave = () => { x.set(0); y.set(0); };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ rotateX, rotateY, transformPerspective: 800 }}
-      className={className}
-    >
-      <motion.div
-        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: useTransform(
-            [glowX, glowY],
-            ([gx, gy]) => `radial-gradient(circle at ${gx}% ${gy}%, rgba(251,191,36,0.07) 0%, transparent 60%)`
-          ),
-        }}
-      />
-      {children}
-    </motion.div>
-  );
-}
-
-// ── Flip cert card ────────────────────────────────────────────────────────────
-function FlipCertCard({ cert }) {
-  const [flipped, setFlipped] = useState(false);
-  const badgeClass =
-    cert.badgeColor === "orange" ? "bg-orange-400/10 text-orange-400 border-orange-400/20"
-    : cert.badgeColor === "teal"   ? "bg-teal-400/10 text-teal-400 border-teal-400/20"
-    : cert.badgeColor === "violet" ? "bg-violet-400/10 text-violet-400 border-violet-400/20"
-    : "bg-blue-400/10 text-blue-400 border-blue-400/20";
-
-  return (
-    <div
-      className="group relative h-36 cursor-pointer"
-      style={{ perspective: 900 }}
-      onClick={() => setFlipped((f) => !f)}
-    >
-      <motion.div
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute inset-0"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        {/* Front */}
-        <div className="absolute inset-0 flex gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backface-hidden hover:border-white/[0.12]">
-          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border font-mono text-xs font-bold ${badgeClass}`}>
-            {cert.abbr}
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="text-xs font-semibold leading-snug text-white/80">{cert.name}</div>
-            <div className="mt-1 font-mono text-[10px] text-white/35">{cert.issuer}</div>
-            <div className="mt-2 font-mono text-[10px] text-white/20">Tap to flip ↩</div>
-          </div>
-        </div>
-
-        {/* Back */}
-        <div
-          className="absolute inset-0 flex flex-col justify-center gap-2 rounded-xl border border-white/[0.06] bg-[#0f0f14] p-5"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-        >
-          <div className="font-mono text-[10px] text-white/30">Issued {cert.issued}</div>
-          {cert.credentialId && (
-            <div className="truncate font-mono text-[10px] text-white/25">ID: {cert.credentialId}</div>
-          )}
-          {cert.verifyUrl !== "#" ? (
-            <a
-              href={cert.verifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1 font-mono text-[10px] text-amber-400/70 hover:text-amber-400"
-            >
-              <ExternalLink size={10} /> Verify credential
-            </a>
-          ) : (
-            <span className="font-mono text-[10px] text-white/18">No credential link yet</span>
-          )}
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
-// ── Skill chip ────────────────────────────────────────────────────────────────
-const CHIP_COLORS = {
-  blue:    { chip: "border-blue-500/25    bg-blue-500/[0.08]    text-blue-300/80    hover:border-blue-400/50    hover:bg-blue-400/[0.14]    hover:text-blue-200    hover:shadow-[0_0_12px_rgba(59,130,246,0.25)]" },
-  orange:  { chip: "border-orange-500/25  bg-orange-500/[0.08]  text-orange-300/80  hover:border-orange-400/50  hover:bg-orange-400/[0.14]  hover:text-orange-200  hover:shadow-[0_0_12px_rgba(249,115,22,0.25)]" },
-  violet:  { chip: "border-violet-500/25  bg-violet-500/[0.08]  text-violet-300/80  hover:border-violet-400/50  hover:bg-violet-400/[0.14]  hover:text-violet-200  hover:shadow-[0_0_12px_rgba(139,92,246,0.25)]" },
-  emerald: { chip: "border-emerald-500/25 bg-emerald-500/[0.08] text-emerald-300/80 hover:border-emerald-400/50 hover:bg-emerald-400/[0.14] hover:text-emerald-200 hover:shadow-[0_0_12px_rgba(16,185,129,0.25)]" },
-  rose:    { chip: "border-rose-500/25    bg-rose-500/[0.08]    text-rose-300/80    hover:border-rose-400/50    hover:bg-rose-400/[0.14]    hover:text-rose-200    hover:shadow-[0_0_12px_rgba(244,63,94,0.25)]" },
-};
-
-const ROW_GLOW = {
-  blue:    "hover:bg-blue-500/[0.025]    [&:hover_.glow]:opacity-100",
-  orange:  "hover:bg-orange-500/[0.025]  [&:hover_.glow]:opacity-100",
-  violet:  "hover:bg-violet-500/[0.025]  [&:hover_.glow]:opacity-100",
-  emerald: "hover:bg-emerald-500/[0.025] [&:hover_.glow]:opacity-100",
-  rose:    "hover:bg-rose-500/[0.025]    [&:hover_.glow]:opacity-100",
-};
-
-const GLOW_COLOR = {
-  blue:    "from-blue-500/10",
-  orange:  "from-orange-500/10",
-  violet:  "from-violet-500/10",
-  emerald: "from-emerald-500/10",
-  rose:    "from-rose-500/10",
-};
-
-function SkillChip({ name, slug, color }) {
-  return (
-    <motion.span
-      whileHover={{ y: -2, scale: 1.04 }}
-      transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className={`inline-flex cursor-default items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs transition-all duration-200 ${CHIP_COLORS[color].chip}`}
-    >
-      {slug && <SocialIcon slug={slug} size={11} color="currentColor" />}
-      {name}
-    </motion.span>
-  );
-}
-
-// ── Project tag chip ──────────────────────────────────────────────────────────
-function Tag({ children }) {
-  return (
-    <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-white/38">
-      {children}
-    </span>
-  );
-}
-
-// ── Expandable card (publications / open source) ──────────────────────────────
-function ExpandableCard({ children, href, defaultOpen = false }) {
-  const [open, setOpen] = useState(defaultOpen);
-  return (
-    <div
-      onClick={() => setOpen((o) => !o)}
-      className="group cursor-pointer rounded-xl border border-white/[0.06] bg-white/[0.02] transition-all hover:border-white/[0.11] hover:bg-white/[0.03]"
-    >
-      {children({ open, href })}
-    </div>
-  );
-}
-
-function OfflineBanner() {
-  const [online, setOnline] = useState(navigator.onLine);
-
-  useEffect(() => {
-    const handleOnline = () => setOnline(true);
-    const handleOffline = () => setOnline(false);
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {!online && (
-        <motion.div
-          initial={{ y: -40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -40, opacity: 0 }}
-          transition={{ duration: 0.22, ease: "easeOut" }}
-          className="fixed left-0 right-0 top-0 z-[200] flex items-center justify-center gap-2 border-b border-amber-400/20 bg-[#0d0d10]/95 px-4 py-2.5 backdrop-blur-sm"
-        >
-          <WifiOff size={13} className="shrink-0 text-amber-400/70" />
-          <span className="font-mono text-[11px] text-amber-400/70">
-            You're offline — viewing cached content. The AI assistant and external links may not work.
-          </span>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 function NavMoreDropdown({ activeSection }) {
   const [open, setOpen] = useState(false);
@@ -363,6 +94,7 @@ function NavMoreDropdown({ activeSection }) {
 
 export default function AboutMe() {
   const [activeSection, setActiveSection] = useState("about");
+  const [loading, setLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -405,6 +137,11 @@ export default function AboutMe() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1600);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleDownload = (e) => {
     e.preventDefault();
     downloadAsPdf("resume-root", "Rajarsi_Saha_Resume.pdf");
@@ -438,6 +175,7 @@ export default function AboutMe() {
 
   return (
     <>
+    <AnimatePresence>{loading && <PageLoader />}</AnimatePresence>
     <OfflineBanner />
     <div id="resume-root" className="min-h-screen bg-[#0d0d10] text-[#f0ece8]">
       <div className="fixed left-0 right-0 top-0 z-50 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
@@ -445,8 +183,10 @@ export default function AboutMe() {
       {/* ── Header ───────────────────────────────────── */}
       <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#0d0d10]/92 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="h-4 w-[2px] bg-amber-400" />
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/[0.05] shadow-[0_0_10px_rgba(251,191,36,0.06)]">
+              <span className="font-display text-xs font-bold text-amber-400">RS</span>
+            </div>
             <span className="whitespace-nowrap font-mono text-sm tracking-wide text-white/75">{profile.name}</span>
           </div>
           <div className="flex items-center gap-3">
