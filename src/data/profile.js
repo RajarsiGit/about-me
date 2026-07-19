@@ -16,7 +16,7 @@ const profile = {
     { name: "GitHub", href: "https://github.com/RajarsiGit", slug: "Github" },
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/in/rajarsisaha-2709a297",
+      href: "https://www.linkedin.com/in/rajarsi-saha-2709a297",
       slug: "FaLinkedin",
     },
   ],
