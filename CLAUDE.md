@@ -76,7 +76,7 @@ about-me/
 **All content changes go here.** The `profile` default export contains:
 
 ```
-profile.name / title / company / location / summary / avatar / phone / resumeUrl / pronouns
+profile.name / title / company / location / summary / avatar / phone / resumeUrl / pronouns / portfolioUrl
 profile.socials[]          — { name, href, slug } for SocialIcon
 profile.skills[]           — flat string array → used by SearchModal index
 profile.skillGroups[]      — { label, color, skills[{ name, slug }] } → Skills section

@@ -628,6 +628,11 @@ export default function AboutMe() {
                 className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-2.5 text-sm text-white/50 transition-colors hover:border-white/[0.18] hover:text-white/70">
                 <ExternalLink size={14} /> LinkedIn
               </motion.a>
+              <motion.a href={profile.portfolioUrl} target="_blank" rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-2.5 text-sm text-white/50 transition-colors hover:border-white/[0.18] hover:text-white/70">
+                <Globe size={14} /> View my personal portfolio
+              </motion.a>
             </div>
           </div>
         </Section>

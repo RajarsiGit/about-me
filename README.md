@@ -118,7 +118,7 @@ Replace `public/og-image.jpg` (used in Open Graph and Twitter Card meta tags).
 | Experience | Primary | Chronological work history with expandable bullets |
 | Projects | Primary | Filterable project cards by category |
 | Leadership | Primary | Team lead initiatives and hiring |
-| Contact | Primary | Email, résumé download, LinkedIn |
+| Contact | Primary | Email, résumé download, LinkedIn, personal portfolio link |
 | Certifications | More ↓ | Flip cards with credential verify links |
 | Open Source | More ↓ | Community contributions |
 | Publications | More ↓ | Articles and writing |
@@ -126,4 +126,4 @@ Replace `public/og-image.jpg` (used in Open Graph and Twitter Card meta tags).
 
 ## License
 
-Private and proprietary.
+GNU General Public License v3.0 — see [LICENSE](LICENSE).

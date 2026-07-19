@@ -11,6 +11,7 @@ const profile = {
   avatar: avatar,
   resumeUrl: "/Profile.pdf",
   phone: "+91 89107 42101",
+  portfolioUrl: "https://personal-portfolio-flame-iota.vercel.app/",
   socials: [
     { name: "Email", href: "mailto:rajarsi3997@gmail.com", slug: "Gmail" },
     { name: "GitHub", href: "https://github.com/RajarsiGit", slug: "Github" },
@@ -18,6 +19,11 @@ const profile = {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/rajarsi-saha-2709a297",
       slug: "FaLinkedin",
+    },
+    {
+      name: "Portfolio",
+      href: "https://personal-portfolio-flame-iota.vercel.app/",
+      slug: "FaGlobe",
     },
   ],
 
