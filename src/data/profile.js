@@ -134,6 +134,7 @@ const profile = {
         "Leading performance optimization for faster, more reliable systems.",
         "Architecting resilient and secure platforms for system stability.",
         "Continuously evolving SysCloud's technology to meet future demands.",
+        "Appointed technical lead for the RDS-to-Aurora PostgreSQL migration across a ~400TB multi-tenant fleet — designed the snapshot-restore/promotion runbook and a PgBouncer endpoint-remapping strategy that avoided reconfiguring 5,000+ customer connection strings, then drove a staged TDL → trial → paid rollout targeting the top 25 databases (~150TB) for storage reclamation.",
       ],
     },
     {
@@ -462,6 +463,14 @@ const profile = {
       link: "#",
       category: "Architecture",
       tags: ["Aurora PostgreSQL", "Read Replicas", "HA", "Cost Modelling"],
+    },
+    {
+      name: "RDS-to-Aurora Migration Execution — 400TB Fleet",
+      tagline:
+        "Led execution of the RDS-to-Aurora rollout across ~15 RDS instances (~400TB): built the snapshot-restore/promotion runbook, diagnosed abnormal Aurora I/O back to MVW refresh frequency, validated PgBouncer compatibility over RDS Proxy, and staged a TDL → trial → paid rollout targeting the top 25 databases (~150TB) by size.",
+      link: "#",
+      category: "Architecture",
+      tags: ["Aurora PostgreSQL", "PgBouncer", "Migration", "400TB"],
     },
     {
       name: "Cognito User Management Enhancements",
