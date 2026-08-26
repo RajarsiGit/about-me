@@ -155,6 +155,10 @@ Both use the same visual treatment: `border-amber-400/20 bg-amber-400/[0.05]` wi
 - JSON-LD: `Person` schema with name, jobTitle, worksFor, url, image, email, sameAs links, knowsAbout
 - Canonical: `https://rajarsi.work`
 
+### Buy Me a Coffee widget (`index.html`)
+
+A third-party floating support-button widget is loaded via a `<script>` tag at the end of `<body>`, after the app's own `main.jsx` entry script. It's configured entirely through `data-*` attributes on the script tag (id `rajarsi`, bottom-right position). It renders independently of React and requires no code changes elsewhere — edit the `data-*` attributes directly in `index.html` to change its message, color, or position.
+
 ### Styling conventions
 
 - **Color palette**: `canvas` (`#0d0d10`), `card` (`#141419`), amber-400 (`#fbbf24`) as accent

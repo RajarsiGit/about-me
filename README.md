@@ -14,6 +14,7 @@ A modern, responsive personal portfolio website built with React and Vite. Dark-
 - **Social Integration**: Dynamic brand icons via Simple Icons and react-icons/fa6
 - **Filterable Projects**: Category-based project filtering
 - **SEO**: Open Graph tags, Twitter Card, JSON-LD structured data, canonical URL
+- **Support Widget**: Floating "Buy Me a Coffee" button for visitor support
 
 ## Tech Stack
 
