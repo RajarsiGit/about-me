@@ -48,6 +48,9 @@ const profile = {
     "AWS DMS",
     "Claude API",
     "MCP Servers",
+    "OpenSearch Serverless",
+    "AWS Kinesis",
+    "CDC Pipelines",
   ],
 
   // Grouped skills with brand slugs for icons (used by Skills section)
@@ -64,6 +67,7 @@ const profile = {
         { name: "PgBouncer", slug: null },
         { name: "RDS Proxy", slug: null },
         { name: "pg_partman", slug: null },
+        { name: "OpenSearch Serverless", slug: "Opensearch" },
       ],
     },
     {
@@ -76,6 +80,8 @@ const profile = {
         { name: "Terraform", slug: "Terraform" },
         { name: "Liquibase", slug: "Liquibase" },
         { name: "Jenkins", slug: "Jenkins" },
+        { name: "AWS Kinesis", slug: "FaAws" },
+        { name: "CDC Pipelines", slug: null },
       ],
     },
     {
@@ -135,6 +141,7 @@ const profile = {
         "Architecting resilient and secure platforms for system stability.",
         "Continuously evolving SysCloud's technology to meet future demands.",
         "Appointed technical lead for the RDS-to-Aurora PostgreSQL migration across a ~400TB multi-tenant fleet — designed the snapshot-restore/promotion runbook and a PgBouncer endpoint-remapping strategy that avoided reconfiguring 5,000+ customer connection strings, then drove a staged TDL → trial → paid rollout targeting the top 25 databases (~150TB) for storage reclamation.",
+        "Architected the CDC-based migration path for two billion-row PostgreSQL tables (`googledocs_tbl`, `googlemails_tbl`) into OpenSearch Serverless NextGen for full-text/fuzzy search — evaluated and ruled out native OSI-to-RDS and direct DMS-to-OpenSearch-Serverless approaches, landed on an RDS → DMS → Kinesis → OSI → OpenSearch Serverless pipeline, and root-caused an OSI publication-identifier defect that led to an AWS Support escalation.",
       ],
     },
     {
@@ -487,6 +494,14 @@ const profile = {
       link: "#",
       category: "Cloud",
       tags: ["PgBouncer", "RDS Proxy", "Cost Analysis", "AWS"],
+    },
+    {
+      name: "OpenSearch Serverless NextGen CDC Migration",
+      tagline:
+        "Evaluated native OSI-to-RDS CDC and DMS-to-OpenSearch-Serverless paths for streaming two billion-row PostgreSQL tables into OpenSearch NextGen for full-text/fuzzy search, ruled both out on pipeline-per-database scaling and missing DMS target support, and landed on an RDS → DMS → Kinesis → OSI → OpenSearch Serverless architecture — also root-caused and drove AWS Support engagement on an OSI publication-identifier defect blocking native CDC.",
+      link: "#",
+      category: "Architecture",
+      tags: ["OpenSearch Serverless", "AWS DMS", "Kinesis", "CDC", "PostgreSQL"],
     },
   ],
 };

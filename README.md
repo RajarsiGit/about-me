@@ -1,32 +1,34 @@
 # About Me — Personal Portfolio
 
-A modern, responsive personal portfolio website built with React and Vite. Dark-themed single-page app with animated UI, an AI chatbot, full-text search, and a page loader.
+A modern, responsive personal portfolio website built with React and Vite. Dark-themed, installable single-page app with animated UI, an AI chatbot, full-text search, and a branded page loader.
 
 ## Features
 
-- **Page Loader**: Branded RS monogram loader with a fade-in/out animation on first visit
-- **Responsive Design**: Desktop nav with collapsible "More" dropdown; mobile drawer with all sections
-- **Smooth Animations**: Framer Motion for transitions, animated stat counters, 3D tilt avatar, flip cert cards
-- **Modern UI**: Dark theme with glassmorphism, radial glows, and amber accents
-- **AI Chatbot**: Interactive assistant powered by Claude (Anthropic) for portfolio Q&A
-- **Search**: ⌘K / Ctrl+K full-text search across all content (sections, skills, projects, experience, certifications, writings, leadership)
-- **PDF Resume Download**: One-click resume export via html2pdf.js
-- **Social Integration**: Dynamic brand icons via Simple Icons and react-icons/fa6
-- **Filterable Projects**: Category-based project filtering
-- **SEO**: Open Graph tags, Twitter Card, JSON-LD structured data, canonical URL
-- **Support Widget**: Floating "Buy Me a Coffee" button for visitor support
+- **Page Loader** — Branded RS monogram loader with a fade-in/out animation on first visit
+- **Responsive Design** — Desktop nav with a collapsible "More" dropdown; mobile drawer with all sections
+- **Smooth Animations** — Framer Motion transitions, animated stat counters, 3D tilt avatar, flip cert cards
+- **Modern UI** — Dark theme with glassmorphism, radial glows, and amber accents
+- **AI Chatbot** — Interactive assistant powered by Claude (Anthropic) for portfolio Q&A
+- **Full-Text Search** — ⌘K / Ctrl+K overlay across sections, skills, projects, experience, certifications, open source, writings, and leadership
+- **PDF Resume Download** — One-click resume export via html2pdf.js
+- **Installable PWA** — Offline-capable via Workbox service worker, with an offline status banner
+- **Social Integration** — Dynamic brand icons via Simple Icons and react-icons/fa6
+- **Filterable Projects** — Category-based project filtering
+- **SEO** — Open Graph tags, Twitter Card, JSON-LD structured data, canonical URL
+- **Support Widget** — Floating "Buy Me a Coffee" button for visitor support
 
 ## Tech Stack
 
 | Concern | Library | Version |
 |---|---|---|
 | Build | Vite + `@vitejs/plugin-react` | ^7.1.2 |
+| PWA | vite-plugin-pwa (Workbox) | ^1.3.0 |
 | UI framework | React 19 | ^19.1.1 |
 | Styling | Tailwind CSS 3 + PostCSS | ^3.4.14 |
 | Animation | Framer Motion | ^12.23.12 |
 | Icons (UI) | Lucide React | ^0.539.0 |
 | Icons (brand) | simple-icons + react-icons/fa6 | ^15.11.0 / ^5.6.0 |
-| AI chatbot | `@anthropic-ai/sdk` (browser) | ^0.80.0 |
+| AI chatbot | `@anthropic-ai/sdk` (browser) | ^0.106.0 |
 | PDF export | html2pdf.js | ^0.14.0 |
 | Markdown | react-markdown + remark-gfm | ^10.1.0 / ^4.0.1 |
 
@@ -34,7 +36,8 @@ A modern, responsive personal portfolio website built with React and Vite. Dark-
 
 ```
 about-me/
-├── index.html                    # Meta tags, OG image, JSON-LD, favicon
+├── index.html                    # Meta tags, OG image, JSON-LD, favicon, Buy Me a Coffee widget
+├── vite.config.js                # Vite + PWA (Workbox) configuration
 ├── public/
 │   ├── Profile.pdf               # Resume download
 │   ├── favicon.svg               # Site favicon
@@ -47,7 +50,7 @@ about-me/
     │   └── profile.js            # Single source of truth for all content
     ├── components/
     │   ├── Section.jsx           # Scroll-animated section wrapper
-    │   ├── Chip.jsx              # Generic tag/badge
+    │   ├── Chip.jsx               # Generic tag/badge
     │   ├── SocialIcon.jsx        # Brand icon (Simple Icons or react-icons/fa6)
     │   ├── ChatBot.jsx           # Floating AI chat assistant
     │   ├── SearchModal.jsx       # ⌘K full-text search overlay
@@ -70,7 +73,7 @@ about-me/
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js `^20.19.0` or `>=22.12.0` (required by Vite 7 / `@vitejs/plugin-react` 5)
 - npm
 
 ### Installation
@@ -88,6 +91,8 @@ Create `.env.local` (not committed):
 ```
 VITE_ANTHROPIC_API_KEY=sk-ant-...
 ```
+
+Required for the AI chatbot to function.
 
 ### Development
 
@@ -109,6 +114,10 @@ Replace `src/assets/images/9da59552-da8c-4924-a829-35409af9ea7e.jpg` and update 
 ### OG / Social Preview Image
 
 Replace `public/og-image.jpg` (used in Open Graph and Twitter Card meta tags).
+
+### PWA Manifest
+
+App name, colors, and caching behavior are configured in the `VitePWA` block of `vite.config.js`.
 
 ## Sections
 
