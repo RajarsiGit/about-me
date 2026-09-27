@@ -147,7 +147,7 @@ const profile = {
     {
       role: "Lead Engineer",
       company: "SysCloud",
-      period: "May 2024 — August 2025",
+      period: "June 2024 — May 2025",
       bullets: [
         "Built Meta Data Layer Framework to scale multi-cloud SaaS backup by auto-generating SQL and GraphQL queries.",
         "Integrated PostGraphile to deliver up to 60% better frontend performance vs REST APIs with MS SQL Server.",
