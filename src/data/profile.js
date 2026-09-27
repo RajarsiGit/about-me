@@ -174,6 +174,7 @@ const profile = {
         "Worked on PostGraphile-based GraphQL web servers in collaboration with Benjie Gillam (creator of PostGraphile).",
         "Set up Liquibase pipelines for PostgreSQL database CI/CD across multiple servers and AWS regions.",
         "Core contributor to the year-long migration of 800+ MSSQL databases from EC2 instances to PostgreSQL on Amazon RDS — designed AWS DMS replication workflows and orchestrated DynamoDB login record updates for all migrated tenants.",
+        "Rolled out four PostGraphile servers with PgBouncer pooling, migrated the MailRealTime and DriveRealTime databases from Aurora Serverless to provisioned clusters, and built the data layer for Google Classroom sync.",
       ],
     },
     {
@@ -382,6 +383,38 @@ const profile = {
       link: "#",
       category: "Database",
       tags: ["AWS DMS", "PostgreSQL", "MS SQL Server", "DynamoDB", "Amazon RDS"],
+    },
+    {
+      name: "PostGraphile & PgBouncer Server Rollout",
+      tagline:
+        "Stood up four PostGraphile GraphQL servers with PgBouncer connection pooling in 2022, shipped API changes to the PostGraphile layer, fixed the GrafanaDB PostGraphile endpoint, and reviewed the dev-account PostGraphile/PgBouncer setup.",
+      link: "#",
+      category: "Backend",
+      tags: ["PostGraphile", "GraphQL", "PgBouncer", "PostgreSQL"],
+    },
+    {
+      name: "Aurora Serverless → Cluster Migration",
+      tagline:
+        "Migrated the MailRealTime and DriveRealTime databases from Aurora Serverless to provisioned clusters in 2022, ran post-migration performance validation, and provisioned new RDS servers with Secrets Manager integration.",
+      link: "#",
+      category: "Cloud",
+      tags: ["Aurora", "Amazon RDS", "Secrets Manager", "Migration"],
+    },
+    {
+      name: "Incremental Backup Queue Reliability (BOD)",
+      tagline:
+        "Owned 2022 reliability work on the backup-on-demand incremental queue pipeline — fixed priority-queue misrouting, London-region Drive incrementals not populating, duplicate daily incremental insertion, and domain-specific queue population failures.",
+      link: "#",
+      category: "Infrastructure",
+      tags: ["PostgreSQL", "Queues", "Incremental Backup", "Multi-Region"],
+    },
+    {
+      name: "Google Classroom Sync",
+      tagline:
+        "Built the data layer for Google Classroom sync in 2022 — job-tracking and sync-status tables, timeseries code changes, and a Grafana timeseries table for sync monitoring.",
+      link: "#",
+      category: "Database",
+      tags: ["PostgreSQL", "Google Classroom", "Timeseries", "Grafana"],
     },
     {
       name: "PostgreSQL Performance Engineering",
