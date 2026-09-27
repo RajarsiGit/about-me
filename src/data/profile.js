@@ -168,7 +168,7 @@ const profile = {
     {
       role: "Software Engineer",
       company: "SysCloud",
-      period: "May 2021 — June 2023",
+      period: "Jan 2021 — May 2023",
       bullets: [
         "Built foundational components of the Meta Data Layer Framework for multi-cloud SaaS application backup.",
         "Worked on PostGraphile-based GraphQL web servers in collaboration with Benjie Gillam (creator of PostGraphile).",
