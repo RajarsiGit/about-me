@@ -51,6 +51,15 @@ const profile = {
     "OpenSearch Serverless",
     "AWS Kinesis",
     "CDC Pipelines",
+    "TypeScript",
+    "NestJS",
+    "Docker",
+    "AWS KMS",
+    "AWS Step Functions",
+    "AWS ECS / Fargate",
+    "ABAC",
+    "Row-Level Security",
+    "AWS Bedrock",
   ],
 
   // Grouped skills with brand slugs for icons (used by Skills section)
@@ -68,6 +77,7 @@ const profile = {
         { name: "RDS Proxy", slug: null },
         { name: "pg_partman", slug: null },
         { name: "OpenSearch Serverless", slug: "Opensearch" },
+        { name: "Parquet", slug: "Apacheparquet" },
       ],
     },
     {
@@ -82,6 +92,10 @@ const profile = {
         { name: "Jenkins", slug: "Jenkins" },
         { name: "AWS Kinesis", slug: "FaAws" },
         { name: "CDC Pipelines", slug: null },
+        { name: "AWS KMS", slug: "FaAws" },
+        { name: "AWS Step Functions", slug: "FaAws" },
+        { name: "AWS ECS / Fargate", slug: "FaAws" },
+        { name: "Docker", slug: "Docker" },
       ],
     },
     {
@@ -94,6 +108,9 @@ const profile = {
         { name: "Node.js", slug: "Nodedotjs" },
         { name: "AWS Cognito", slug: "FaAws" },
         { name: "AWS SQS", slug: "FaAws" },
+        { name: "TypeScript", slug: "Typescript" },
+        { name: "NestJS", slug: "Nestjs" },
+        { name: "Jest", slug: "Jest" },
       ],
     },
     {
@@ -102,6 +119,16 @@ const profile = {
       skills: [
         { name: "Multi-Tenant SaaS", slug: null },
         { name: "Row-Level Security", slug: null },
+        { name: "ABAC", slug: null },
+        { name: "Encryption (KMS / AES-256)", slug: null },
+        { name: "JWT / OAuth Authentication", slug: null },
+        { name: "Least-Privilege IAM", slug: null },
+        { name: "Secrets Management", slug: null },
+        { name: "Audit Logging", slug: null },
+        { name: "Zero-Downtime Migrations", slug: null },
+        { name: "Event-Driven Architecture", slug: null },
+        { name: "High Availability & Fault Tolerance", slug: null },
+        { name: "Performance Engineering", slug: null },
         { name: "Cost Optimization", slug: null },
         { name: "Application Security", slug: null },
         { name: "CI/CD Pipelines", slug: null },
@@ -117,6 +144,8 @@ const profile = {
         { name: "MCP Servers", slug: null },
         { name: "Prompt Engineering", slug: null },
         { name: "Claude Code", slug: "Anthropic" },
+        { name: "AWS Bedrock", slug: "FaAws" },
+        { name: "LLM-Assisted Code Generation", slug: null },
       ],
     },
   ],
@@ -136,12 +165,13 @@ const profile = {
       company: "SysCloud",
       period: "May 2025 — Present",
       bullets: [
-        "Driving cost optimization to ensure efficient cloud resource utilization.",
-        "Leading performance optimization for faster, more reliable systems.",
-        "Architecting resilient and secure platforms for system stability.",
-        "Continuously evolving SysCloud's technology to meet future demands.",
-        "Appointed technical lead for the RDS-to-Aurora PostgreSQL migration across a ~400TB multi-tenant fleet — designed the snapshot-restore/promotion runbook and a PgBouncer endpoint-remapping strategy that avoided reconfiguring 5,000+ customer connection strings, then drove a staged TDL → trial → paid rollout targeting the top 25 databases (~150TB) for storage reclamation.",
-        "Architected the CDC-based migration path for two billion-row PostgreSQL tables (`googledocs_tbl`, `googlemails_tbl`) into OpenSearch Serverless NextGen for full-text/fuzzy search — evaluated and ruled out native OSI-to-RDS and direct DMS-to-OpenSearch-Serverless approaches, landed on an RDS → DMS → Kinesis → OSI → OpenSearch Serverless pipeline, and root-caused an OSI publication-identifier defect that led to an AWS Support escalation.",
+        "Driving cost optimization across the cloud estate to ensure efficient resource utilization, from RDS fleet rightsizing and storage reclamation to savings-plan coverage.",
+        "Leading performance optimization for faster, more reliable systems, covering PostgreSQL query tuning, materialized view refresh, connection pooling and fleet-wide bloat recovery.",
+        "Architecting resilient and secure platforms for system stability, spanning multi-tenant PostgreSQL, GraphQL data access, AWS infrastructure and AI-assisted monitoring of the database fleet.",
+        "Continuously evolving SysCloud's technology to meet future demands, shaping the data layer architecture behind next-generation AI agent capabilities across the platform.",
+        "DAL Team Lead for a 9-person Data Access Layer team across PostgreSQL, GraphQL and AWS — sprint planning, weekly progress reports, Q2 2026 roadmap planning with the VP of Engineering, and design gate reviews for Liquibase migrations across 1,500+ databases.",
+        "Led the RDS-to-Aurora PostgreSQL rollout across ~15 instances (~400TB) — built the snapshot-restore/promotion runbook, validated PgBouncer compatibility, and staged a TDL → trial → paid rollout for the top 25 databases (~150TB).",
+        "Architected the RDS → DMS → Kinesis → OSI → OpenSearch Serverless CDC pipeline for two billion-row PostgreSQL tables to enable full-text search, and root-caused an OSI publication defect that led to an AWS Support escalation.",
       ],
     },
     {
@@ -149,10 +179,13 @@ const profile = {
       company: "SysCloud",
       period: "June 2024 — May 2025",
       bullets: [
-        "Built Meta Data Layer Framework to scale multi-cloud SaaS backup by auto-generating SQL and GraphQL queries.",
-        "Integrated PostGraphile to deliver up to 60% better frontend performance vs REST APIs with MS SQL Server.",
-        "Managed Liquibase CI/CD pipelines across 1500+ PostgreSQL databases and multiple AWS regions.",
-        "Optimized AWS infrastructure (instance sizes, storage) and migrated from Aurora Serverless to RDS, saving $200–$250/month.",
+        "Integrated PostGraphile to deliver up to 60% better frontend performance versus REST APIs on MS SQL Server, replacing hand-written endpoints with an auto-generated GraphQL layer over PostgreSQL.",
+        "Designed KMS-backed AES-256 encryption of QuickBooks Online OAuth tokens across Step Functions, Lambda, DynamoDB and a PostGraphile decryption layer, passing Intuit's Marketplace review (~30% trial sign-up lift reported; KMS calls cut ~70% via caching).",
+        "Managed Liquibase CI/CD pipelines across 1500+ PostgreSQL databases and multiple AWS regions, giving schema changes a consistent, reviewable path to production.",
+        "Optimized AWS infrastructure by rightsizing instances and storage, and migrated from Aurora Serverless to RDS to lower costs, saving $200–$250/month.",
+        "Migrated 15+ RDS instances from Graviton2 to Graviton4 across 7 regions and covered them with Database Savings Plans to lower the fleet's compute cost.",
+        "Analyzed six months of RDS spend ($672K across 89 usage types and 7 regions), identified GP3 storage (53%) as the main cost lever, and achieved a 17% month-over-month cost reduction.",
+        "Enhanced the AWS Cognito user management layer with better edge-case handling across user creation, update and deletion flows, reducing silent auth failures across the platform's authentication surface.",
       ],
     },
     {
@@ -160,9 +193,14 @@ const profile = {
       company: "SysCloud",
       period: "June 2023 — May 2024",
       bullets: [
-        "Developed optimized PostgreSQL queries with continuous maintenance and security, leveraging AWS RDS & EnterpriseDB.",
-        "Assisted in building the Infra Config Framework using Terraform for rapid cloud infrastructure deployments.",
-        "Completed AWS Certified Developer Associate and Microsoft Certified Azure Fundamentals.",
+        "Developed optimized PostgreSQL queries with continuous maintenance and security, leveraging AWS RDS and EnterpriseDB to keep the multi-tenant data layer fast and well maintained.",
+        "Built a distributed archival service that shards multi-tenant PostgreSQL tables into Parquet files on customer S3 buckets, using SKIP LOCKED job claiming across ECS tasks and forked worker pools (est. 15–20x throughput).",
+        "Built request-level ABAC for the multi-tenant GraphQL server — declarative JSON mappers check role, user settings and variable ownership per operation, with LRU-cached roles and typed 403 errors.",
+        "Extended the Cloud Config Framework, which auto-generates SQL and GraphQL queries, and built cloudgen, a TypeScript CLI that onboards new SaaS clouds (Box, Shopify, Xero) with Claude on Bedrock-assisted config generation.",
+        "Built a graph-based typeahead Smart Search service (NestJS) that resolves multi-word queries into related entities via PostgreSQL node/edge materialized views, with ranked results and ABAC/JWT-secured access.",
+        "Built and maintained Flow Control Automation (ACF), where a config-driven rule engine turns CloudWatch, log and DB events into real-time availability scores in DynamoDB that gate downstream workloads, with per-tenant kill-switches.",
+        "Assisted in building the Infra Config Framework using Terraform for rapid, repeatable cloud infrastructure deployments.",
+        "Completed AWS Certified Developer Associate and Microsoft Certified Azure Fundamentals, broadening cloud development and platform expertise alongside project work.",
       ],
     },
     {
@@ -170,11 +208,14 @@ const profile = {
       company: "SysCloud",
       period: "Jan 2021 — May 2023",
       bullets: [
-        "Built foundational components of the Meta Data Layer Framework for multi-cloud SaaS application backup.",
-        "Worked on PostGraphile-based GraphQL web servers in collaboration with Benjie Gillam (creator of PostGraphile).",
-        "Set up Liquibase pipelines for PostgreSQL database CI/CD across multiple servers and AWS regions.",
-        "Core contributor to the year-long migration of 800+ MSSQL databases from EC2 instances to PostgreSQL on Amazon RDS — designed AWS DMS replication workflows and orchestrated DynamoDB login record updates for all migrated tenants.",
-        "Rolled out four PostGraphile servers with PgBouncer pooling, migrated the MailRealTime and DriveRealTime databases from Aurora Serverless to provisioned clusters, and built the data layer for Google Classroom sync.",
+        "Built foundational components of the Cloud Config Framework for multi-cloud SaaS application backup, laying the groundwork for generating SQL and GraphQL queries per cloud.",
+        "Worked on PostGraphile-based GraphQL web servers in collaboration with Benjie Gillam (creator of PostGraphile) to power the platform's GraphQL data layer.",
+        "Set up Liquibase pipelines for PostgreSQL database CI/CD across multiple servers and AWS regions, standardizing how schema changes are deployed.",
+        "Core contributor to the year-long migration of 800+ MSSQL databases from EC2 to PostgreSQL on Amazon RDS, designing AWS DMS replication workflows and DynamoDB login record updates for all migrated tenants.",
+        "Rolled out four PostGraphile servers with PgBouncer pooling, moved the MailRealTime and DriveRealTime databases from Aurora Serverless to provisioned clusters, and built the data layer for Google Classroom sync.",
+        "Contributed to the PostGraphile/NestJS data access layer over Aurora PostgreSQL — the cm-runner-plus 2.0 workflow engine (370+ workflows), multi-tenant DB routing, RDS + OpenSearch archive retrieval, and layered security.",
+        "Worked on a containerized PgBouncer sidecar on ECS/Fargate that KMS-decrypts multi-tenant credentials from Secrets Manager/SSM at startup, with per-role connection limits and a CodeBuild → ECR pipeline.",
+        "Built and maintained an ECS service that populates SQS queues with backup and daily-sync jobs for six clouds, using odd/even queue rotation, trial/paid priority queues and SSM-toggled Multi-Tenant, Canary, UAT and Normal flows.",
       ],
     },
     {
@@ -182,8 +223,8 @@ const profile = {
       company: "Happy Dude",
       period: "Dec 2018 — Jan 2021",
       bullets: [
-        "Designed visual assets and graphics remotely over a 2+ year engagement.",
-        "Developed strong communication skills collaborating across distributed teams.",
+        "Designed visual assets and graphics remotely over a 2+ year engagement, delivering work to distributed teams without in-person coordination.",
+        "Developed strong communication skills collaborating across distributed teams, keeping design work aligned through remote feedback.",
       ],
     },
     {
@@ -191,8 +232,8 @@ const profile = {
       company: "Chegg Inc.",
       period: "Apr 2020 — May 2020",
       bullets: [
-        "Provided subject-matter expertise and answered academic questions for students on the Chegg platform.",
-        "Demonstrated strong communication and problem-solving skills under time constraints.",
+        "Provided subject-matter expertise and answered academic questions for students on the Chegg platform, explaining concepts clearly in writing.",
+        "Demonstrated strong communication and problem-solving skills while answering questions under tight time constraints.",
       ],
     },
     {
@@ -200,8 +241,8 @@ const profile = {
       company: "Internshala",
       period: "Dec 2018 — Mar 2019",
       bullets: [
-        "Represented Internshala on campus, promoting internship and training opportunities to peers.",
-        "Built communication and outreach skills through peer engagement initiatives.",
+        "Represented Internshala on campus, promoting internship and training opportunities to peers and encouraging them to apply.",
+        "Built communication and outreach skills through peer engagement initiatives and campus promotion.",
       ],
     },
   ],
@@ -387,10 +428,10 @@ const profile = {
     {
       name: "PostGraphile & PgBouncer Server Rollout",
       tagline:
-        "Stood up four PostGraphile GraphQL servers with PgBouncer connection pooling in 2022, shipped API changes to the PostGraphile layer, fixed the GrafanaDB PostGraphile endpoint, and reviewed the dev-account PostGraphile/PgBouncer setup.",
+        "Stood up four PostGraphile GraphQL servers with PgBouncer pooling in 2022 and contributed to the NestJS/TypeScript data access layer over Aurora PostgreSQL, including the workflow engine, multi-tenant DB routing and layered security. Also worked on the ECS/Fargate PgBouncer sidecar that KMS-decrypts tenant credentials at startup.",
       link: "#",
       category: "Backend",
-      tags: ["PostGraphile", "GraphQL", "PgBouncer", "PostgreSQL"],
+      tags: ["PostGraphile", "GraphQL", "NestJS", "TypeScript", "PgBouncer", "PostgreSQL", "Aurora", "AWS ECS/Fargate", "KMS"],
     },
     {
       name: "Aurora Serverless → Cluster Migration",
@@ -401,28 +442,20 @@ const profile = {
       tags: ["Aurora", "Amazon RDS", "Secrets Manager", "Migration"],
     },
     {
-      name: "Incremental Backup Queue Reliability (BOD)",
-      tagline:
-        "Owned 2022 reliability work on the backup-on-demand incremental queue pipeline — fixed priority-queue misrouting, London-region Drive incrementals not populating, duplicate daily incremental insertion, and domain-specific queue population failures.",
-      link: "#",
-      category: "Infrastructure",
-      tags: ["PostgreSQL", "Queues", "Incremental Backup", "Multi-Region"],
-    },
-    {
-      name: "Google Classroom Sync",
-      tagline:
-        "Built the data layer for Google Classroom sync in 2022 — job-tracking and sync-status tables, timeseries code changes, and a Grafana timeseries table for sync monitoring.",
-      link: "#",
-      category: "Database",
-      tags: ["PostgreSQL", "Google Classroom", "Timeseries", "Grafana"],
-    },
-    {
       name: "PostgreSQL Performance Engineering",
       tagline:
         "Query optimization, materialized views, execution plan analysis, and RLS on billion-row hash-partitioned tables.",
       link: "#",
       category: "Database",
       tags: ["PostgreSQL", "RLS", "Hash Partitioning", "EXPLAIN ANALYZE"],
+    },
+    {
+      name: "Row-Level Security for Multi-Tenant PostgreSQL",
+      tagline:
+        "Designed and rolled out PostgreSQL RLS across a per-tenant fleet serving ~10M end users — JWT claims from NestJS drive PL/pgSQL helpers and three-tier policies on 25+ tables via Liquibase, with no per-user DB credentials. Extended as a retention guardrail for S3 Tables (Iceberg) migrations.",
+      link: "#",
+      category: "Security",
+      tags: ["PostgreSQL", "RLS", "PL/pgSQL", "PostGraphile", "NestJS", "AWS Cognito", "Liquibase"],
     },
     {
       name: "RDS Fleet Right-Sizing & Graviton Migration",
@@ -433,12 +466,52 @@ const profile = {
       tags: ["AWS RDS", "Graviton4", "Cost Optimization", "Multi-Region"],
     },
     {
-      name: "Meta Data Layer Framework",
+      name: "Cloud Config Framework & CLI",
       tagline:
-        "Auto-generates SQL & GraphQL queries to scale multi-cloud SaaS backup across cloud platforms.",
+        "Metadata-driven framework that auto-generates SQL & GraphQL queries so each new cloud plugs into the same backup data layer, plus an interactive TypeScript CLI (cloudgen) that onboards clouds like Box, Shopify and Xero — generating DAL schemas, backup/restore service code and dashboard metadata, with Claude on Bedrock extracting API definitions and an ANTLR4 parser driving DDL.",
       link: "#",
       category: "Backend",
-      tags: ["PostgreSQL", "GraphQL", "Multi-Cloud", "SaaS"],
+      tags: ["PostgreSQL", "GraphQL", "TypeScript", "Node.js", "ANTLR4", "AWS Bedrock", "Claude", "Multi-Cloud"],
+    },
+    {
+      name: "Table Vertical Sharding",
+      tagline:
+        "Distributed archival pipeline that moves large multi-tenant PostgreSQL tables to Parquet on customer S3 buckets — SKIP LOCKED job claiming across 4–5 ECS tasks, forked worker pools (estimated 15–20x throughput), STS cross-account access and encrypted credential caching.",
+      link: "#",
+      category: "Infrastructure",
+      tags: ["TypeScript", "Node.js", "PostgreSQL", "AWS S3", "ECS", "Parquet", "Docker"],
+    },
+    {
+      name: "Attribute-Based Access Control (ABAC) for GraphQL",
+      tagline:
+        "Request-level authorization for a multi-tenant GraphQL server — declarative JSON mappers define required role settings, variable-ownership checks and custom validators, with LRU-cached roles and settings, per-tenant JWT caching and typed 403 errors. Rules change by editing JSON, not validator code.",
+      link: "#",
+      category: "Security",
+      tags: ["TypeScript", "NestJS", "GraphQL", "JWT", "ABAC", "LRU Cache"],
+    },
+    {
+      name: "QuickBooks OAuth Token Encryption (Intuit Marketplace)",
+      tagline:
+        "KMS-backed AES-256 encryption of QuickBooks Online OAuth refresh tokens and realm IDs to pass Intuit's Marketplace security review — Step Functions connection flow, HMAC-hashed lookup keys, a transparent PostGraphile decryption layer, key rotation, CloudTrail auditing and a revoke-on-disconnect flow. In-memory caching cut KMS calls by up to ~70%; the listing brought an internally reported ~30% lift in trial sign-ups and ~20% higher Marketplace referral conversion.",
+      link: "#",
+      category: "Security",
+      tags: ["AWS KMS", "Step Functions", "Lambda", "DynamoDB", "PostGraphile", "TypeScript"],
+    },
+    {
+      name: "Smart Search — Graph-Based Typeahead",
+      tagline:
+        "Typeahead search service that resolves multi-word queries across Account, Domain, User, Cloud, App and Object entities by traversing PostgreSQL node/edge materialized views — partial-term matching, concatenated-query fallback, ranked and grouped results, per-tenant LRU-cached read-only pools, and JWT/ABAC-secured access.",
+      link: "#",
+      category: "Backend",
+      tags: ["TypeScript", "NestJS", "PostgreSQL", "Materialized Views", "Graph Traversal", "Jest"],
+    },
+    {
+      name: "Flow Control Automation (ACF)",
+      tagline:
+        "Flow-control and rate-limiting platform for multi-region cloud backup — a Collector → Aggregator → Watcher pipeline ingests CloudWatch metrics, logs and DB triggers, and a config-driven JSON rule engine with SSM-managed thresholds writes real-time availability scores to DynamoDB. Includes per-tenant kill-switches and runs as PM2 services and Lambda.",
+      link: "#",
+      category: "Infrastructure",
+      tags: ["TypeScript", "Node.js", "AWS Lambda", "DynamoDB", "CloudWatch", "SSM", "PM2", "Docker"],
     },
     {
       name: "RBAC Architecture Migration & MVW Performance",
@@ -449,12 +522,12 @@ const profile = {
       tags: ["PostgreSQL", "RBAC", "Materialized Views", "1.2M rows"],
     },
     {
-      name: "ACF & ODD/EVEN Queue Population System",
+      name: "Incremental Queue Population Service",
       tagline:
-        "5-layer DynamoDB availability model, ODD/EVEN SQS pipeline, PL/pgSQL triggers, ACFAnalyzer Lambda, and daily health script.",
+        "Containerized ECS service that populates AWS SQS queues with backup and daily-sync jobs for six cloud platforms (Google Workspace, Office 365, HubSpot, Salesforce, Slack, QuickBooks Online) — odd/even queue rotation with trial and paid priority queues, four SSM-toggled execution flows (Multi-Tenant, Canary, UAT, Normal), parallel child processes, and retry, monitoring and alerting safeguards.",
       link: "#",
       category: "Infrastructure",
-      tags: ["DynamoDB", "SQS", "PL/pgSQL", "Lambda"],
+      tags: ["Node.js", "TypeScript", "AWS ECS", "SQS", "DynamoDB", "PostgreSQL", "Docker"],
     },
     {
       name: "RDS Cost Optimization — 6-Month Spend Analysis",
@@ -477,7 +550,7 @@ const profile = {
       tagline:
         "Designed the DAL AI Log Monitoring platform — a cron-based async system spanning 15 planned hunter modules across restore, export, backup, PgBouncer, PostGraphile, and S3 health domains. The slow-queries hunter alone dispatches Claude as a live DB investigator with 35+ health checks (autovacuum, bloat, XID wraparound, replica lag), 5-min polling, and MCP-integrated tooling (CloudWatch, Performance Insights, PgBouncer, pgDBA, Grafana, Sentry).",
       link: "#",
-      category: "AI / Infrastructure",
+      category: "AI",
       tags: ["Claude API", "MCP Servers", "PostgreSQL", "AI Agents", "AWS RDS"],
     },
     {
@@ -485,7 +558,7 @@ const profile = {
       tagline:
         "Contributed DAL/data layer architecture to SysCloud's Intelligence Plane AI Agent Framework — defining how agents interact with the platform's data infrastructure for next-gen AI-powered product capabilities.",
       link: "#",
-      category: "AI / Architecture",
+      category: "AI",
       tags: ["AI Agents", "LLMs", "Data Architecture", "PostgreSQL"],
     },
     {
