@@ -7,7 +7,7 @@ const profile = {
   title: "Technical Architect",
   company: "SysCloud",
   location: "Hyderabad, Telangana, India",
-  summary: `Passionate database expert with ${yearsFrom("2021-01-01")} years of experience in cloud ops and DevOps at SysCloud. Deep expertise in AWS, PostgreSQL, and multi-cloud SaaS platforms — focused on application scalability, performance, availability, fault tolerance, and cost optimization. AWS Certified Developer | Microsoft Certified | GenAI enthusiast.`,
+  summary: `Technical Architect with ${yearsFrom("2021-01-01")} years at SysCloud, designing the PostgreSQL, GraphQL and AWS data layer behind a multi-cloud SaaS backup platform with 500+ TB under management. I lead a 9-engineer team and focus on scalability, security, availability and cost — from large-scale database migrations and row-level security to AI-driven monitoring. Hands-on across TypeScript/NestJS services, KMS-backed encryption, ABAC authorization and CDC search pipelines, with a track record of cutting cloud spend and recovering 100+ TB of table bloat with zero downtime. I also write and mentor on PostgreSQL performance and help shape SysCloud's AI agent platform. AWS Certified Developer | Microsoft Certified | GenAI enthusiast.`,
   avatar: avatar,
   resumeUrl: "/Profile.pdf",
   phone: "+91 89107 42101",
