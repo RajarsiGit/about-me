@@ -609,6 +609,46 @@ const profile = {
       category: "Architecture",
       tags: ["OpenSearch Serverless", "AWS DMS", "Kinesis", "CDC", "PostgreSQL"],
     },
+    {
+      name: "Syscloud Multi-MCP Remote Server",
+      tagline:
+        "Core contributor to a team-built remote MCP platform on AWS Lambda behind an ALB — JSON-RPC 2.0 with path-based routing to 15 production MCPs (280+ tools). Built the AWS RDS MCP (34 tools incl. Performance Insights, wait-event breakdown by query, Aurora cluster parameter groups and snapshots), the Cost Explorer MCP with service-name aliasing, CloudWatch metrics and alarms, the PostgreSQL DBA and PgBouncer pool-health MCPs, and RDS IAM authentication with connection pooling for the Postgres MCPs.",
+      link: "#",
+      category: "MCP",
+      tags: ["MCP", "Python", "AWS Lambda", "JSON-RPC", "AWS RDS", "Performance Insights", "PgBouncer", "RDS IAM"],
+    },
+    {
+      name: "RDS Performance Diagnostics MCP",
+      tagline:
+        "15-tool MCP server for diagnosing slow queries and timeouts across a ~22-instance RDS PostgreSQL fleet. It pulls Performance Insights (DB load, top SQL, wait events, top users/hosts), CloudWatch, parameter groups, RDS events and DB logs into one diagnose_instance call that flags issues automatically: XID wraparound risk, replication slot lag, burst-balance throttling, unset timeouts and slow-query logging left off. Also runs a parallel fleet-wide health sweep.",
+      link: "#",
+      category: "MCP",
+      tags: ["MCP", "Python", "AWS RDS", "Performance Insights", "CloudWatch", "PostgreSQL"],
+    },
+    {
+      name: "RDS IAM Database MCP",
+      tagline:
+        "Password-free MCP server that connects to any RDS PostgreSQL database using short-lived IAM auth tokens. A business-lookup mode resolves a tenant's RDS endpoint, database and region from MasterDB using a businessuserid, so Claude can query any of 800+ per-tenant databases without stored credentials.",
+      link: "#",
+      category: "MCP",
+      tags: ["MCP", "Python", "FastMCP", "RDS IAM", "PostgreSQL", "boto3", "Multi-Tenant"],
+    },
+    {
+      name: "Azure DevOps MCP Suite",
+      tagline:
+        "Family of Python MCP servers for Azure DevOps, 65 tools in total. They cover work item CRUD and WIQL queries, wiki read/write/search and revision history, plus a dedicated work-item creator that turns pasted text or screenshots into batches of work items linked under existing stories, features or epics.",
+      link: "#",
+      category: "MCP",
+      tags: ["MCP", "Python", "FastMCP", "Azure DevOps", "WIQL"],
+    },
+    {
+      name: "AWS Ops & Observability MCPs",
+      tagline:
+        "Single-purpose MCP servers built for day-to-day DBA and DevOps work. They cover SSM Parameter Store (8 tools), RDS parameter group inspection and diffing, RDS CloudWatch metrics and alarms, Grafana dashboard/folder/alert management (14 tools), Kibana/OpenSearch log error and pattern analysis, and DynamoDB lookups through the AI-AccessLayer so Claude reuses its cross-account role.",
+      link: "#",
+      category: "MCP",
+      tags: ["MCP", "Python", "TypeScript", "AWS SSM", "Grafana", "OpenSearch", "DynamoDB", "CloudWatch"],
+    },
   ],
 };
 
