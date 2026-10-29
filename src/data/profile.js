@@ -562,6 +562,14 @@ const profile = {
       tags: ["AI Agents", "LLMs", "Data Architecture", "PostgreSQL"],
     },
     {
+      name: "Queue Population Error-Resolution Agent",
+      tagline:
+        "Built a Langflow tool-calling agent that triages DAL incremental queue population errors from ELK logs and suggests exact fixes. The agent chains three sub-flows as tools — CodeAnalysisAgent (pulls the failing SQL function body), GetSchema (resolves referenced table schemas), and GetVectorSearch (semantic search over past Azure DevOps defects for prior resolutions) — then posts a structured analysis and code fix to Teams via the AI Access Layer API.",
+      link: "#",
+      category: "AI",
+      tags: ["Langflow", "AI Agents", "RAG", "Vector Search", "PostgreSQL"],
+    },
+    {
       name: "PgBouncer Weighted Pool Allocation",
       tagline:
         "Designed and rolled out weighted pool allocation for PgBouncer across all 7 production regions — dynamically favouring healthier DB nodes to reduce connection saturation and improve query throughput for 5,000+ customers.",
