@@ -60,6 +60,7 @@ const profile = {
     "ABAC",
     "Row-Level Security",
     "AWS Bedrock",
+    "pgvector",
   ],
 
   // Grouped skills with brand slugs for icons (used by Skills section)
@@ -76,6 +77,7 @@ const profile = {
         { name: "PgBouncer", slug: null },
         { name: "RDS Proxy", slug: null },
         { name: "pg_partman", slug: null },
+        { name: "pgvector", slug: null },
         { name: "OpenSearch Serverless", slug: "Opensearch" },
         { name: "Parquet", slug: "Apacheparquet" },
       ],
@@ -568,6 +570,14 @@ const profile = {
       link: "#",
       category: "AI",
       tags: ["Langflow", "AI Agents", "RAG", "Vector Search", "PostgreSQL"],
+    },
+    {
+      name: "Semantic Search Embedding Pipeline — Bedrock + pgvector",
+      tagline:
+        "Node.js service that chunks rows from any PostgreSQL table, embeds them with Amazon Bedrock Titan Text Embeddings V2 and stores the vectors in pgvector for cosine-similarity search over an HNSW index. Supports a resumable, checkpointed backfill and an SQS-driven incremental worker, with idempotent upserts, bounded concurrency with jittered backoff on Bedrock throttling, per-row model tracking, and tenant-filtered search using pgvector 0.8 iterative scans.",
+      link: "#",
+      category: "AI",
+      tags: ["pgvector", "AWS Bedrock", "Titan Embeddings", "PostgreSQL", "HNSW", "Node.js", "AWS SQS", "Docker"],
     },
     {
       name: "PgBouncer Weighted Pool Allocation",
