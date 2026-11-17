@@ -7,7 +7,7 @@ const profile = {
   title: "Technical Architect",
   company: "SysCloud",
   location: "Hyderabad, Telangana, India",
-  summary: `Technical Architect with ${yearsFrom("2021-01-01")} years at SysCloud, designing the PostgreSQL, GraphQL and AWS data layer behind a multi-cloud SaaS backup platform with 500+ TB under management. I lead a 9-engineer team and focus on scalability, security, availability and cost — from large-scale database migrations and row-level security to AI-driven monitoring. Hands-on across TypeScript/NestJS services, KMS-backed encryption, ABAC authorization and CDC search pipelines, with a track record of cutting cloud spend and recovering 100+ TB of table bloat with zero downtime. I also write and mentor on PostgreSQL performance and help shape SysCloud's AI agent platform. AWS Certified Developer | Microsoft Certified | GenAI enthusiast.`,
+  summary: `Technical Architect with ${yearsFrom("2021-01-01")} years at SysCloud, progressing from hands-on backend and database engineering to leading a 9-engineer Data Access Layer team. I architect and operate a multi-tenant SaaS backup platform managing 500+ TB across 7 AWS regions and 40+ PostgreSQL servers, focusing on scalability, security, availability and cost — from large-scale database migrations and row-level security to AI-assisted operations. Hands-on across TypeScript/NestJS services, KMS-backed encryption, ABAC authorization and CDC search pipelines, with a track record of cutting cloud spend and recovering 100+ TB of table bloat with zero downtime. I also write and mentor on PostgreSQL performance and help shape SysCloud's AI agent platform. AWS Certified Developer & AI Practitioner | EDB Advanced PostgreSQL | GenAI enthusiast.`,
   avatar: avatar,
   resumeUrl: "/Profile.pdf",
   phone: "+91 89107 42101",
@@ -61,6 +61,16 @@ const profile = {
     "Row-Level Security",
     "AWS Bedrock",
     "pgvector",
+    "Python",
+    "JavaScript",
+    "AWS S3 Tables",
+    "RDS Proxy",
+    "AWS CDK",
+    "Grafana",
+    "CloudWatch",
+    "Langflow",
+    "RAG",
+    "FastMCP",
   ],
 
   // Grouped skills with brand slugs for icons (used by Skills section)
@@ -78,6 +88,7 @@ const profile = {
         { name: "RDS Proxy", slug: null },
         { name: "pg_partman", slug: null },
         { name: "pgvector", slug: null },
+        { name: "S3 Tables / Apache Iceberg", slug: null },
         { name: "OpenSearch Serverless", slug: "Opensearch" },
         { name: "Parquet", slug: "Apacheparquet" },
       ],
@@ -98,6 +109,11 @@ const profile = {
         { name: "AWS Step Functions", slug: "FaAws" },
         { name: "AWS ECS / Fargate", slug: "FaAws" },
         { name: "Docker", slug: "Docker" },
+        { name: "AWS CDK", slug: "FaAws" },
+        { name: "CodeBuild / CodePipeline", slug: "FaAws" },
+        { name: "Grafana", slug: "Grafana" },
+        { name: "CloudWatch", slug: "FaAws" },
+        { name: "Git", slug: "Git" },
       ],
     },
     {
@@ -113,6 +129,9 @@ const profile = {
         { name: "TypeScript", slug: "Typescript" },
         { name: "NestJS", slug: "Nestjs" },
         { name: "Jest", slug: "Jest" },
+        { name: "Python", slug: "Python" },
+        { name: "JavaScript", slug: "Javascript" },
+        { name: "REST / Microservices", slug: null },
       ],
     },
     {
@@ -148,6 +167,8 @@ const profile = {
         { name: "Claude Code", slug: "Anthropic" },
         { name: "AWS Bedrock", slug: "FaAws" },
         { name: "LLM-Assisted Code Generation", slug: null },
+        { name: "Langflow", slug: null },
+        { name: "RAG / Tool Calling", slug: null },
       ],
     },
   ],
@@ -172,8 +193,12 @@ const profile = {
         "Architecting resilient and secure platforms for system stability, spanning multi-tenant PostgreSQL, GraphQL data access, AWS infrastructure and AI-assisted monitoring of the database fleet.",
         "Continuously evolving SysCloud's technology to meet future demands, shaping the data layer architecture behind next-generation AI agent capabilities across the platform.",
         "DAL Team Lead for a 9-person Data Access Layer team across PostgreSQL, GraphQL and AWS — sprint planning, weekly progress reports, Q2 2026 roadmap planning with the VP of Engineering, and design gate reviews for Liquibase migrations across 1,500+ databases.",
-        "Led the RDS-to-Aurora PostgreSQL rollout across ~15 instances (~400TB) — built the snapshot-restore/promotion runbook, validated PgBouncer compatibility, and staged a TDL → trial → paid rollout for the top 25 databases (~150TB).",
-        "Architected the RDS → DMS → Kinesis → OSI → OpenSearch Serverless CDC pipeline for two billion-row PostgreSQL tables to enable full-text search, and root-caused an OSI publication defect that led to an AWS Support escalation.",
+        "Led the RDS-to-Aurora PostgreSQL modernization in 2 of 6 regions using Aurora replicas and cutover after data migration, and wrote the runbook covering high availability and PgBouncer/connection compatibility for the remaining rollout.",
+        "Architected the S3 Tables (Apache Iceberg) cold-data migration for billion-row PostgreSQL tables across a ~570 TB fleet using Glue/PySpark, DynamoDB routing and Athena, targeting ~50% RDS storage reduction (~$650K/yr projected), with a CDC backup layer because AWS Backup doesn't cover table buckets.",
+        "Developed a CDC proof of concept (RDS → DMS → Kinesis → OSI → OpenSearch Serverless) for search across billion-row datasets, investigated ingestion constraints and escalated an OSI platform defect to AWS Support (on hold for other priorities); later built a Glue/PySpark backfill job from RDS into OpenSearch Serverless.",
+        "Built organization-wide remote Model Context Protocol (MCP) services, including CloudWatch, PostgreSQL and Azure DevOps integrations, now used across SysCloud engineering.",
+        "Hardened a 31-agent ECS monitoring fleet with IAM-authenticated PostgreSQL access, RDS Proxy routing and automated fix pull requests, resolving token leaks, failed jobs and alert noise.",
+        "Delivered 5 Grafana dashboards for SLOs, workflows, authorization, RDS capacity and golden signals, and improved 15+ dashboards covering replica lag, locks, autovacuum and connection saturation.",
       ],
     },
     {
@@ -196,7 +221,7 @@ const profile = {
       period: "June 2023 — May 2024",
       bullets: [
         "Developed optimized PostgreSQL queries with continuous maintenance and security, leveraging AWS RDS and EnterpriseDB to keep the multi-tenant data layer fast and well maintained.",
-        "Built a distributed archival service that shards multi-tenant PostgreSQL tables into Parquet files on customer S3 buckets, using SKIP LOCKED job claiming across ECS tasks and forked worker pools (est. 15–20x throughput).",
+        "Built a distributed archival service that moves multi-tenant PostgreSQL data to Parquet on S3 and to S3 Tables to reduce hot-database load, using SKIP LOCKED job claiming across ECS tasks and forked worker pools (est. 15–20x throughput).",
         "Built request-level ABAC for the multi-tenant GraphQL server — declarative JSON mappers check role, user settings and variable ownership per operation, with LRU-cached roles and typed 403 errors.",
         "Extended the Cloud Config Framework, which auto-generates SQL and GraphQL queries, and built cloudgen, a TypeScript CLI that onboards new SaaS clouds (Box, Shopify, Xero) with Claude on Bedrock-assisted config generation.",
         "Built a graph-based typeahead Smart Search service (NestJS) that resolves multi-word queries into related entities via PostgreSQL node/edge materialized views, with ranked results and ABAC/JWT-secured access.",
@@ -213,10 +238,11 @@ const profile = {
         "Built foundational components of the Cloud Config Framework for multi-cloud SaaS application backup, laying the groundwork for generating SQL and GraphQL queries per cloud.",
         "Worked on PostGraphile-based GraphQL web servers in collaboration with Benjie Gillam (creator of PostGraphile) to power the platform's GraphQL data layer.",
         "Set up Liquibase pipelines for PostgreSQL database CI/CD across multiple servers and AWS regions, standardizing how schema changes are deployed.",
-        "Core contributor to the year-long migration of 800+ MSSQL databases from EC2 to PostgreSQL on Amazon RDS, designing AWS DMS replication workflows and DynamoDB login record updates for all migrated tenants.",
+        "Contributed to the year-long migration of 800+ MSSQL databases from EC2 to PostgreSQL on Amazon RDS, designing AWS DMS replication workflows and DynamoDB login record updates for all migrated tenants.",
         "Rolled out four PostGraphile servers with PgBouncer pooling, moved the MailRealTime and DriveRealTime databases from Aurora Serverless to provisioned clusters, and built the data layer for Google Classroom sync.",
         "Contributed to the PostGraphile/NestJS data access layer over Aurora PostgreSQL — the cm-runner-plus 2.0 workflow engine (370+ workflows), multi-tenant DB routing, RDS + OpenSearch archive retrieval, and layered security.",
         "Worked on a containerized PgBouncer sidecar on ECS/Fargate that KMS-decrypts multi-tenant credentials from Secrets Manager/SSM at startup, with per-role connection limits and a CodeBuild → ECR pipeline.",
+        "Built DAL stacks with AWS CDK (ECS, API Gateway, Cognito) and contributed to the later move to Terraform.",
         "Built and maintained an ECS service that populates SQS queues with backup and daily-sync jobs for six clouds, using odd/even queue rotation, trial/paid priority queues and SSM-toggled Multi-Tenant, Canary, UAT and Normal flows.",
       ],
     },
@@ -250,6 +276,24 @@ const profile = {
   ],
 
   certifications: [
+    {
+      name: "EDB Advanced for PostgreSQL v18 Certification",
+      issuer: "EnterpriseDB",
+      abbr: "EDB",
+      badgeColor: "teal",
+      issued: null,
+      credentialId: null,
+      verifyUrl: "#",
+    },
+    {
+      name: "AWS Certified AI Practitioner",
+      issuer: "Amazon Web Services",
+      abbr: "AWS",
+      badgeColor: "orange",
+      issued: null,
+      credentialId: null,
+      verifyUrl: "#",
+    },
     {
       name: "Microsoft Certified: Azure Fundamentals",
       issuer: "Microsoft",
@@ -422,7 +466,7 @@ const profile = {
     {
       name: "MSSQL → PostgreSQL Migration — 800+ Databases",
       tagline:
-        "Year-long migration of 800+ MSSQL databases from EC2 instances to PostgreSQL on Amazon RDS. Designed AWS DMS replication workflows and orchestrated DynamoDB login record updates across all migrated tenants.",
+        "Contributed to the year-long migration of 800+ MSSQL tenant databases from EC2 to PostgreSQL on Amazon RDS — AWS DMS replication workflows, DynamoDB login/routing record updates for migrated tenants, and Liquibase-standardized schema releases.",
       link: "#",
       category: "Database",
       tags: ["AWS DMS", "PostgreSQL", "MS SQL Server", "DynamoDB", "Amazon RDS"],
@@ -596,20 +640,20 @@ const profile = {
       tags: ["Aurora PostgreSQL", "Read Replicas", "HA", "Cost Modelling"],
     },
     {
-      name: "RDS-to-Aurora Migration Execution — 400TB Fleet",
+      name: "RDS-to-Aurora PostgreSQL Modernization",
       tagline:
-        "Led execution of the RDS-to-Aurora rollout across ~15 RDS instances (~400TB): built the snapshot-restore/promotion runbook, diagnosed abnormal Aurora I/O back to MVW refresh frequency, validated PgBouncer compatibility over RDS Proxy, and staged a TDL → trial → paid rollout targeting the top 25 databases (~150TB) by size.",
+        "Led the RDS-to-Aurora PostgreSQL modernization in 2 of 6 regions using Aurora replicas and cutover after data migration. Wrote the runbook covering high availability and connection compatibility for the remaining rollout, validated PgBouncer compatibility, and traced abnormal Aurora I/O back to materialized-view refresh frequency.",
       link: "#",
       category: "Architecture",
-      tags: ["Aurora PostgreSQL", "PgBouncer", "Migration", "400TB"],
+      tags: ["Aurora PostgreSQL", "Aurora Replicas", "PgBouncer", "Migration", "High Availability"],
     },
     {
       name: "Cognito User Management Enhancements",
       tagline:
-        "Enhanced AWS Cognito user management layer with improved edge-case handling across user creation, update, and deletion flows — reducing silent auth failures across the platform's authentication surface.",
+        "Enhanced AWS Cognito user management with improved edge-case handling across user creation, update and deletion flows, reducing silent auth failures. Configured Cognito identity providers including Google, Microsoft, Xero and Okta, with client IDs, secrets and separate app clients.",
       link: "#",
       category: "Platform",
-      tags: ["AWS Cognito", "Authentication", "Node.js", "IAM"],
+      tags: ["AWS Cognito", "Authentication", "OAuth", "Okta", "Node.js", "IAM"],
     },
     {
       name: "PgBouncer vs RDS Proxy Cost Analysis",
@@ -630,7 +674,7 @@ const profile = {
     {
       name: "OpenSearch Serverless Search Migration — Billion-Row Tables",
       tagline:
-        "Brought full-text and fuzzy search to the three largest PostgreSQL tables by moving them into per-customer OpenSearch Serverless collections. Evaluated native OSI-to-RDS CDC and DMS-to-AOSS, ruled both out on per-database pipeline scaling and missing DMS target support, and designed an RDS → DMS → Kinesis → OSI → OpenSearch Serverless CDC architecture (~$20K/month estimate), including root-causing and driving AWS Support on an OSI publication-identifier defect. Built the Glue/PySpark backfill job from RDS: PK-partitioned parallel JDBC reads, document shaping that matches the update-buffer contract (pk _id, per-user routing, allowed fields, epoch/date formats), parallel streaming_bulk writes, S3 (Iceberg) chunk-coverage prerequisites, and verification by range _count plus a routed mget sample before flipping the read path.",
+        "Brought full-text and fuzzy search to the three largest PostgreSQL tables by moving them into per-customer OpenSearch Serverless collections. Set up collection groups, collections, ingestion pipelines, access policies and search/indexing OCUs. Evaluated native OSI-to-RDS CDC and DMS-to-AOSS, ruled both out on per-database pipeline scaling and missing DMS target support, and built an RDS → DMS → Kinesis → OSI → OpenSearch Serverless CDC proof of concept (~$20K/month estimate, on hold for other priorities), root-causing and escalating an OSI publication-identifier defect to AWS Support. Built the Glue/PySpark backfill job from RDS: PK-partitioned parallel JDBC reads, document shaping that matches the update-buffer contract (pk _id, per-user routing, allowed fields, epoch/date formats), parallel streaming_bulk writes, S3 (Iceberg) chunk-coverage prerequisites, and verification by range _count plus a routed mget sample before flipping the read path.",
       link: "#",
       category: "Architecture",
       tags: ["OpenSearch Serverless", "AWS Glue", "PySpark", "AWS DMS", "Kinesis", "OSI", "CDC", "PostgreSQL", "DynamoDB"],
@@ -674,6 +718,54 @@ const profile = {
       link: "#",
       category: "MCP",
       tags: ["MCP", "Python", "TypeScript", "AWS SSM", "Grafana", "OpenSearch", "DynamoDB", "CloudWatch"],
+    },
+    {
+      name: "SaaS Cloud Integrations (OAuth 2.0)",
+      tagline:
+        "Integrated SaaS apps with SysCloud's backup platform via OAuth 2.0 across Google Workspace, Microsoft 365, HubSpot, Salesforce, QuickBooks, Slack, Box and Xero, and managed the Google Admin Console and Microsoft Entra integrations.",
+      link: "#",
+      category: "Platform",
+      tags: ["OAuth 2.0", "Google Workspace", "Microsoft 365", "Salesforce", "HubSpot", "QuickBooks", "Slack", "Box", "Xero"],
+    },
+    {
+      name: "AI Monitoring Agent Fleet Hardening",
+      tagline:
+        "Hardened a 31-agent ECS monitoring fleet with IAM-authenticated PostgreSQL access, RDS Proxy routing and automated fix pull requests, resolving token leaks, failed jobs and alert noise. Also designed IAM-based, tenant-aware PostgreSQL diagnostics for the agents.",
+      link: "#",
+      category: "AI",
+      tags: ["AI Agents", "AWS ECS", "RDS IAM", "RDS Proxy", "PostgreSQL"],
+    },
+    {
+      name: "Grafana Observability Dashboards & Delivery",
+      tagline:
+        "Delivered 5 Grafana dashboards for SLOs, workflows, authorization, RDS capacity and golden signals, and improved 15+ dashboards covering replica lag, locks, autovacuum and connection saturation. Built the ECS/Auto Scaling deployment for Grafana with CodeCommit, CodePipeline and ECR so builds and deploys run automatically after a push.",
+      link: "#",
+      category: "Infrastructure",
+      tags: ["Grafana", "SLOs", "AWS ECS", "Auto Scaling", "CodePipeline", "ECR", "PostgreSQL"],
+    },
+    {
+      name: "AWS Batch CPU Right-Sizing",
+      tagline:
+        "Reduced over-allocated CPU for scheduled AWS Batch jobs, saving more than $20K per month.",
+      link: "#",
+      category: "Cloud",
+      tags: ["AWS Batch", "Cost Optimization", "Right-Sizing"],
+    },
+    {
+      name: "Storage Gateway S3 VPC Endpoint Reconfiguration",
+      tagline:
+        "Reconfigured EC2-based Storage Gateways in at least 6 regions to use S3 VPC endpoints, cutting the related costs by approximately 50%.",
+      link: "#",
+      category: "Cloud",
+      tags: ["AWS Storage Gateway", "S3", "VPC Endpoints", "EC2", "Cost Optimization"],
+    },
+    {
+      name: "DAL Infrastructure as Code (AWS CDK → Terraform)",
+      tagline:
+        "Built the Data Access Layer stacks with AWS CDK, including ECS, API Gateway and Cognito, and contributed to the later move to Terraform for repeatable cloud infrastructure deployments.",
+      link: "#",
+      category: "Infrastructure",
+      tags: ["AWS CDK", "Terraform", "AWS ECS", "API Gateway", "AWS Cognito"],
     },
   ],
 };

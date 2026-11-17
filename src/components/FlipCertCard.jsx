@@ -39,7 +39,9 @@ export default function FlipCertCard({ cert }) {
           className="absolute inset-0 flex flex-col justify-center gap-2 rounded-xl border border-white/[0.06] bg-[#0f0f14] p-5"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <div className="font-mono text-[10px] text-white/30">Issued {cert.issued}</div>
+          {cert.issued && (
+            <div className="font-mono text-[10px] text-white/30">Issued {cert.issued}</div>
+          )}
           {cert.credentialId && (
             <div className="truncate font-mono text-[10px] text-white/25">ID: {cert.credentialId}</div>
           )}
