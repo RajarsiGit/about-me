@@ -620,12 +620,20 @@ const profile = {
       tags: ["PgBouncer", "RDS Proxy", "Cost Analysis", "AWS"],
     },
     {
-      name: "OpenSearch Serverless NextGen CDC Migration",
+      name: "S3 Tables (Iceberg) Cold-Data Migration — 570 TB Fleet",
       tagline:
-        "Evaluated native OSI-to-RDS CDC and DMS-to-OpenSearch-Serverless paths for streaming two billion-row PostgreSQL tables into OpenSearch NextGen for full-text/fuzzy search, ruled both out on pipeline-per-database scaling and missing DMS target support, and landed on an RDS → DMS → Kinesis → OSI → OpenSearch Serverless architecture — also root-caused and drove AWS Support engagement on an OSI publication-identifier defect blocking native CDC.",
+        "Architected and led the move of cold data from billion-row, hash-partitioned PostgreSQL tables (googledocs_tbl, googlemails_tbl, o365mails_tbl) across a ~570 TB, 7-region, 23,000+ tenant-database RDS fleet to Amazon S3 Tables (Apache Iceberg) queried through Athena, targeting ~50% RDS storage reduction (~$650K/yr projected). Designed the V2 plan end to end (per-business migration status flag, DynamoDB read routing, cutover, delete and pg_repack reclaim), chose S3 + Athena over an archive RDS instance, and enforced 12/18-month tiered hot/cold retention with PostgreSQL RLS and partial indexes. Delivered Glue/PySpark batches across 10+ customer schemas (raising DynamoDB from 40k to 60k WCU and fixing Spark driver failures), built a CDC backup layer (Node.js Lambda → Parquet on S3) because AWS Backup doesn't support table buckets, resolved Iceberg commit-concurrency errors with retry/backoff, and set the 14-day time-travel and snapshot-retention policy.",
       link: "#",
       category: "Architecture",
-      tags: ["OpenSearch Serverless", "AWS DMS", "Kinesis", "CDC", "PostgreSQL"],
+      tags: ["S3 Tables", "Apache Iceberg", "AWS Glue", "PySpark", "Athena", "DynamoDB", "PostgreSQL", "RLS", "AWS Lambda", "CDC"],
+    },
+    {
+      name: "OpenSearch Serverless Search Migration — Billion-Row Tables",
+      tagline:
+        "Brought full-text and fuzzy search to the three largest PostgreSQL tables by moving them into per-customer OpenSearch Serverless collections. Evaluated native OSI-to-RDS CDC and DMS-to-AOSS, ruled both out on per-database pipeline scaling and missing DMS target support, and designed an RDS → DMS → Kinesis → OSI → OpenSearch Serverless CDC architecture (~$20K/month estimate), including root-causing and driving AWS Support on an OSI publication-identifier defect. Built the Glue/PySpark backfill job from RDS: PK-partitioned parallel JDBC reads, document shaping that matches the update-buffer contract (pk _id, per-user routing, allowed fields, epoch/date formats), parallel streaming_bulk writes, S3 (Iceberg) chunk-coverage prerequisites, and verification by range _count plus a routed mget sample before flipping the read path.",
+      link: "#",
+      category: "Architecture",
+      tags: ["OpenSearch Serverless", "AWS Glue", "PySpark", "AWS DMS", "Kinesis", "OSI", "CDC", "PostgreSQL", "DynamoDB"],
     },
     {
       name: "Syscloud Multi-MCP Remote Server",
