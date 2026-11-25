@@ -798,6 +798,30 @@ const profile = {
       tags: ["AWS Cognito", "Authentication", "OAuth", "Okta", "Node.js", "IAM"],
     },
     {
+      name: "User & Admin Access Management Console",
+      tagline:
+        "Built a role-gated identity administration console for support and sales staff to search users, reset MFA, create accounts and grant partner login access, plus a workflow for provisioning customer admins across multiple clouds with partial-failure handling and audit logging.",
+      link: "#",
+      category: "Security",
+      tags: ["React", "Apollo GraphQL", "AWS Cognito", "MFA", "RBAC", "Audit Logging"],
+    },
+    {
+      name: "License, Storage & Account Reporting Redesign",
+      tagline:
+        "Redesigned license and storage reporting for a multi-cloud SaaS backup platform, with per-service breakdowns, unlimited-license support and active/inactive storage views. Replaced static per-cloud screens with tabs generated from cloud metadata, so new clouds appear without a new tab definition.",
+      link: "#",
+      category: "Platform",
+      tags: ["React", "JavaScript", "Metadata-Driven UI", "Reporting", "Multi-Cloud"],
+    },
+    {
+      name: "Partner Lifecycle Management & Access Control",
+      tagline:
+        "Built configuration-driven partner controls for onboarding, migration and billing features, plus a role-restricted, audit-logged partner deletion flow. Introduced a new staff role across the portal's actions and feature controls, and extracted shared permission logic into a reusable module.",
+      link: "#",
+      category: "Platform",
+      tags: ["React", "JavaScript", "RBAC", "Audit Logging", "Configuration-Driven"],
+    },
+    {
       name: "PgBouncer vs RDS Proxy Cost Analysis",
       tagline:
         "Ran a detailed cost and architecture comparison between PgBouncer and AWS RDS Proxy across the 22-instance us-east-1 fleet, confirming PgBouncer as the substantially cheaper option and informing the team's pooling strategy.",
